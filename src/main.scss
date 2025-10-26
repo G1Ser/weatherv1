@@ -1,0 +1,25 @@
+@font-face {
+  font-family: 'Consolas';
+  src: url('@/assets/fonts/consolas.ttf');
+}
+
+@font-face {
+  font-family: 'LXGW';
+  src: url('@/assets/fonts/lxgwscreen.ttf');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Consolas', 'LXGW';
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

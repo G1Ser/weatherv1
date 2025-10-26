@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "composite": true, // 启用项目引用
+        "target": "ES2022", // Node.js 的目标版本
+        "module": "ESNext", // 使用 ESNext 模块
+        "moduleResolution": "bundler" // 打包工具模块解析
+    },
+    "include": ["vite.config.ts"]
+}
