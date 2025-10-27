@@ -6,7 +6,16 @@
 
 <script setup lang="ts">
   import router from '@/router';
+  import { onMounted } from 'vue';
   import SvgIcon from './SvgIcon.vue';
+  import { getIpLocation, getGeocode, getWeather } from '@/api/gmap';
+  onMounted(async () => {
+    await getIpLocation();
+    const res = await getGeocode('shanghai');
+    const adcode = res.geocodes[0].adcode;
+    await getWeather(adcode);
+    await getWeather(adcode, 'all');
+  });
 </script>
 
 <style lang="scss" scoped>

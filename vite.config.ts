@@ -37,6 +37,7 @@ export default defineConfig({
     minify: 'terser',
     chunkSizeWarningLimit: 1500,
   },
+  publicDir: 'public',
   css: {
     preprocessorOptions: {
       scss: {
