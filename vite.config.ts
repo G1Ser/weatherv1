@@ -6,6 +6,7 @@ import svgLoader from 'vite-svg-loader';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: './',
   plugins: [
     vue(),
     codeInspectorPlugin({
@@ -36,7 +37,7 @@ export default defineConfig({
     open: true,
   },
   build: {
-    outDir: 'dist',
+    outDir: 'docs',
     sourcemap: false,
     minify: 'terser',
     chunkSizeWarningLimit: 1500,
