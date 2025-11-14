@@ -41,6 +41,45 @@ export default defineConfig({
     sourcemap: false,
     minify: 'terser',
     chunkSizeWarningLimit: 1500,
+    terserOptions: {
+      compress: {
+        drop_console: true, // 生产环境移除 console
+        drop_debugger: true, // 移除 debugger
+        pure_funcs: ['console.log'], // 移除 console.log
+      },
+    },
+    // Rollup 打包配置
+    rollupOptions: {
+      output: {
+        // 手动配置代码分割
+        manualChunks: {
+          'vue-vendor': ['vue', 'vue-router', 'pinia'],
+          'echarts-vendor': ['echarts'],
+          'utils-vendor': ['axios', 'lodash-es'],
+        },
+        // 优化输出文件名
+        chunkFileNames: (chunkInfo) => {
+          // vendor 文件放到单独的 vendor 目录
+          if (chunkInfo.name.includes('vendor')) {
+            return 'vendor/[name]-[hash].js';
+          }
+          return 'js/[name]-[hash].js';
+        },
+        entryFileNames: 'js/[name]-[hash].js',
+        assetFileNames: assetInfo => {
+          // 根据文件类型分类存放
+          const fileName = assetInfo.names?.[0] || '';
+          if (/\.(png|jpe?g|gif|svg|webp|ico)$/i.test(fileName)) {
+            return `images/[name]-[hash].[ext]`;
+          } else if (/\.(woff2?|eot|ttf|otf)$/i.test(fileName)) {
+            return `fonts/[name]-[hash].[ext]`;
+          } else if (/\.css$/i.test(fileName)) {
+            return `css/[name]-[hash].[ext]`;
+          }
+          return `assets/[name]-[hash].[ext]`;
+        },
+      },
+    },
   },
   publicDir: 'public',
   css: {

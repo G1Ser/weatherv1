@@ -32,7 +32,6 @@
 </script>
 
 <style lang="scss" scoped>
-  @use 'bootstrap/scss/bootstrap.scss';
   .header-container {
     display: flex;
     align-items: center;
