@@ -2,6 +2,7 @@
 
 interface ImportMetaEnv {
   readonly VITE_LOCAL_LOCATION: string;
+  readonly VITE_AMAP_API: string;
 }
 
 interface ImportMeta {

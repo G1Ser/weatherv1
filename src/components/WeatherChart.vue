@@ -4,7 +4,7 @@
       <div v-for="cast in casts" :key="cast.date" class="header-item">
         <p>{{ cast.week }}</p>
         <p>{{ cast.date }}</p>
-        <SvgIcon :name="cast.icon" size="36px" />
+        <SvgIcon :name="cast.icon" size="48px" />
         <p>{{ cast.weather }}</p>
       </div>
     </div>
@@ -52,25 +52,16 @@
         right: '12%',
         top: '10%',
         bottom: '10%',
-        containLabel: false,
       },
       xAxis: {
         type: 'category',
         boundaryGap: false,
         data: props.casts.map(c => c.date),
         show: false,
-        axisLine: { show: false },
-        axisTick: { show: false },
-        axisLabel: { show: false },
-        splitLine: { show: false },
       },
       yAxis: {
         type: 'value',
         show: false,
-        axisLine: { show: false },
-        axisTick: { show: false },
-        axisLabel: { show: false },
-        splitLine: { show: false },
       },
       series: [
         {
@@ -112,9 +103,6 @@
           },
         },
       ],
-      tooltip: {
-        show: false,
-      },
     };
     chartInstance.setOption(option);
   };
@@ -160,6 +148,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    gap: 5px;
     align-items: center;
     p {
       margin: 2px 0;

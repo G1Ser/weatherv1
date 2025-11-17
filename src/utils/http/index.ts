@@ -2,7 +2,7 @@ import axios from 'axios';
 import type { AxiosRequestConfig } from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://weather-proxy.chauncey0420zx.workers.dev',
+  baseURL: import.meta.env.VITE_AMAP_API,
   timeout: 10000,
 });
 
