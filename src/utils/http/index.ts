@@ -2,22 +2,13 @@ import axios from 'axios';
 import type { AxiosRequestConfig } from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://restapi.amap.com/v3',
+  baseURL: 'https://weather-proxy.chauncey0420zx.workers.dev',
   timeout: 10000,
 });
 
 // 请求拦截器
 axiosInstance.interceptors.request.use(
   config => {
-    // 自动添加 key 参数
-    const amapKey = import.meta.env.VITE_AMAP_KEY;
-    if (amapKey) {
-      config.params = {
-        ...config.params,
-        key: amapKey,
-      };
-    }
-
     return config;
   },
   error => {
