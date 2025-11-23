@@ -37,7 +37,7 @@ export default defineConfig({
     open: true,
   },
   build: {
-    outDir: 'docs',
+    outDir: 'dist',
     sourcemap: false,
     minify: 'terser',
     chunkSizeWarningLimit: 1500,
@@ -58,7 +58,7 @@ export default defineConfig({
           'utils-vendor': ['axios', 'lodash-es'],
         },
         // 优化输出文件名
-        chunkFileNames: (chunkInfo) => {
+        chunkFileNames: chunkInfo => {
           // vendor 文件放到单独的 vendor 目录
           if (chunkInfo.name.includes('vendor')) {
             return 'vendor/[name]-[hash].js';
