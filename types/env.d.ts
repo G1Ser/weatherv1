@@ -1,10 +1,9 @@
-/// <reference types="vite/client" />
+/// <reference types="node" />
 
-interface ImportMetaEnv {
-  readonly VITE_LOCAL_LOCATION: string;
-  readonly VITE_AMAP_API: string;
-}
-
-interface ImportMeta {
-  readonly env: ImportMetaEnv;
+declare namespace NodeJS {
+  interface ProcessEnv {
+    readonly NODE_ENV: 'development' | 'production' | 'test';
+    readonly VUE_APP_LOCAL_LOCATION: string;
+    readonly VUE_APP_AMAP_API: string;
+  }
 }

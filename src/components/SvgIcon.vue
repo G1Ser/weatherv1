@@ -10,24 +10,31 @@
   />
 </template>
 
-<script setup lang="ts">
-  import { computed, defineAsyncComponent, type Component } from 'vue';
-
-  interface Props {
-    name: string; // SVG 文件名（不含 .svg 后缀）
-    size?: string; // 图标大小
-    color?: string; // 图标颜色
-    className?: string; // 自定义类名
-  }
-
-  const props = withDefaults(defineProps<Props>(), {
-    size: '1em',
-    color: 'currentColor',
-    className: '',
-  });
-
-  // 动态导入 SVG 文件
-  const iconComponent = computed<Component>(() => {
-    return defineAsyncComponent(() => import(`@/assets/svgs/${props.name}.svg`));
-  });
+<script>
+export default {
+  name: 'SvgIcon',
+  props: {
+    name: {
+      type: String,
+      required: true,
+    },
+    size: {
+      type: String,
+      default: '1em',
+    },
+    color: {
+      type: String,
+      default: 'currentColor',
+    },
+    className: {
+      type: String,
+      default: '',
+    },
+  },
+  computed: {
+    iconComponent() {
+      return () => import(`@/assets/svgs/${this.name}.svg`);
+    },
+  },
+};
 </script>

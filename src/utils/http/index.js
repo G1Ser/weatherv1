@@ -1,5 +1,4 @@
 import axios from 'axios';
-import type { AxiosRequestConfig } from 'axios';
 
 const axiosInstance = axios.create({
   baseURL: process.env.VUE_APP_AMAP_API,
@@ -26,9 +25,8 @@ axiosInstance.interceptors.response.use(res => {
   }
 });
 
-// 创建类型声明，使http直接返回响应数据而不是AxiosResponse
-function http<T = any>(config: AxiosRequestConfig): Promise<T> {
-  return axiosInstance(config) as unknown as Promise<T>;
+function http(config) {
+  return axiosInstance(config);
 }
 
 export default http;

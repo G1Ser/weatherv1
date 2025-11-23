@@ -1,36 +1,38 @@
 {
   "compilerOptions": {
     /* 基础配置 */
-    "target": "ES2020",                          // 编译目标 ES 版本
-    "useDefineForClassFields": true,             // 使用 ES 标准的类字段行为
-    "module": "ESNext",                          // 使用最新的模块系统
+    "target": "ES2020",
+    "module": "ESNext",
 
-    /* 模块解析配置 */
-    "moduleResolution": "bundler",               // 使用打包工具的模块解析策略
-    "resolveJsonModule": true,                   // 允许导入 JSON 文件
-    "allowImportingTsExtensions": true,          // 允许导入 .ts 扩展名
+    /* 模块解析配置 - 修改为 node 以兼容 Webpack */
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "baseUrl": ".",
 
     /* 类型检查配置 */
-    "strict": true,                              // 启用所有严格类型检查
-    "noUnusedLocals": true,                      // 未使用的局部变量报错
-    "noUnusedParameters": true,                  // 未使用的参数报错
-    "noFallthroughCasesInSwitch": true,         // switch 语句需要 break
-    "skipLibCheck": true,                        // 跳过声明文件的类型检查
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
 
-    /* 输出配置 */
-    "noEmit": true,                              // 不生成输出文件（由 Vite 处理）
+    /* 输出配置 - Webpack 需要输出 */
+    "sourceMap": true,
 
     /* 路径和库配置 */
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],   // 包含的类型库
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "paths": {
-      "@/*": ["./src/*"]                         // 路径别名配置
+      "@/*": ["src/*"]
     },
 
     /* Vue 特定配置 */
-    "jsx": "preserve",                           // 保留 JSX 代码
-    "isolatedModules": true,                     // 每个文件作为单独模块
-    "esModuleInterop": true,                     // ES 模块互操作性
-    "allowSyntheticDefaultImports": true         // 允许合成默认导入
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* 类型声明 */
+    "types": ["node", "webpack-env"]
   },
 
   /* 包含和排除的文件 */
@@ -43,10 +45,5 @@
   "exclude": [
     "node_modules",
     "dist"
-  ],
-
-  /* Vue 插件配置 */
-  "references": [
-    { "path": "./tsconfig.node.json" }
   ]
 }

@@ -16,25 +16,20 @@ jobs:
       - name: Checkout 代码
         uses: actions/checkout@v4
 
-      - name: 安装 pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-
       - name: 设置 Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'pnpm'
+          cache: 'npm'
 
       - name: 安装依赖
-        run: pnpm install --frozen-lockfile
+        run: npm install
 
       - name: 构建项目
-        run: pnpm build
+        run: npm run build
         env:
-          VITE_LOCAL_LOCATION: '北京'
-          VITE_AMAP_API: 'https://wt-prod-k8m3.chauncey.work'
+          VUE_APP_LOCAL_LOCATION: '北京'
+          VUE_APP_AMAP_API: 'https://wt-prod-k8m3.chauncey.work'
 
       - name: 部署到 GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
