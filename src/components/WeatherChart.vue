@@ -92,9 +92,9 @@
 
         const option = {
           grid: {
-            left: '12%',
-            right: '12%',
-            top: '10%',
+            left: '12.5%',
+            right: '12.5%',
+            top: '15%',
             bottom: '10%',
           },
           xAxis: {

@@ -32,7 +32,6 @@
 </template>
 
 <script lang="ts">
-  import { mapGetters } from 'vuex';
   import SvgIcon from './SvgIcon.vue';
   import SkeletonItem from './SkeletonItem.vue';
   import type { WeatherLivesType } from '@/types/gmap';
@@ -52,9 +51,14 @@
       };
     },
     computed: {
-      ...mapGetters('IP', ['localLocation', 'localGeocode']),
-      showAddButton() {
+      showAddButton(): boolean {
         return this.$route.name === 'City';
+      },
+      localLocation(): string {
+        return (this.$store.getters['IP/localLocation'] as string) || '';
+      },
+      localGeocode(): string {
+        return (this.$store.getters['IP/localGeocode'] as string) || '';
       },
     },
     methods: {
@@ -136,12 +140,6 @@
 
   .home-btn {
     cursor: pointer;
-    transition: transform 0.2s;
-    color: var(--text-color);
-
-    &:hover {
-      transform: scale(1.1);
-    }
   }
 
   .add-btn {

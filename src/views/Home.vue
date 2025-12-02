@@ -74,7 +74,7 @@
         } finally {
           this.isSearching = false;
         }
-      }, 500);
+      }, 300);
       this.loadFavorites();
     },
     methods: {

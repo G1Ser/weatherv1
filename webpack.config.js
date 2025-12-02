@@ -61,14 +61,7 @@ module.exports = (env, argv) => {
         },
         {
           test: /\.svg$/,
-          use: [
-            {
-              loader: 'vue-svg-loader',
-              options: {
-                svgo: false, // Disable SVGO to preserve animations and styles
-              },
-            },
-          ],
+          use: ['vue-loader', 'vue-svg-loader'],
         },
         {
           test: /\.(png|jpe?g|gif|webp|ico)$/i,
