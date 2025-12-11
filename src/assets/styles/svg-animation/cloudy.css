@@ -1,0 +1,10 @@
+@import url('./base.css');
+
+.cloudy-sun-rays {
+  animation: rotate360 25s linear infinite;
+  transform-origin: 695.5px 333.4px;
+}
+
+.cloudy-cloud {
+  animation: moveRight 4s ease-in-out infinite;
+}

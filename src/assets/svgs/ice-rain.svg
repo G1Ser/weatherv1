@@ -4,37 +4,7 @@
   xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14">
   <defs>
     <style>
-      @keyframes iceRainFall {
-        0% {
-          transform: translateY(0) translateX(0);
-          opacity: 1;
-        }
-
-        100% {
-          transform: translateY(250px) translateX(-8px);
-          opacity: 0.3;
-        }
-      }
-
-      .ice-rain {
-        animation: iceRainFall 2s ease-in infinite;
-      }
-
-      .ice-rain:nth-of-type(1) {
-        animation-delay: 0s;
-      }
-
-      .ice-rain:nth-of-type(2) {
-        animation-delay: 0.4s;
-      }
-
-      .ice-rain:nth-of-type(3) {
-        animation-delay: 0.8s;
-      }
-
-      .ice-rain:nth-of-type(4) {
-        animation-delay: 1.2s;
-      }
+      @import url('../styles/svg-animation/ice-rain.css');
     </style>
   </defs>
   <path
@@ -58,18 +28,20 @@
     <path
       d="M460.54 908.94a19.36 19.36 0 0 1-19.36 19.36H416.5a19.35 19.35 0 0 1-19.36-19.36v-24.69a19.35 19.35 0 0 1 19.36-19.35h24.68a19.35 19.35 0 0 1 19.36 19.35z"
       fill="#9CDCF8" p-id="2988"></path>
-       <path d="M416.5 864.9a18.54 18.54 0 1 0 0 37.06h24.68a18.54 18.54 0 1 0 0-37.06z" fill="#C0E7FA" p-id="2989"></path>
+    <path d="M416.5 864.9a18.54 18.54 0 1 0 0 37.06h24.68a18.54 18.54 0 1 0 0-37.06z" fill="#C0E7FA" p-id="2989"></path>
   </g>
   <g class="ice-rain">
-  <path
-    d="M625.52 786.87a19.36 19.36 0 0 1-19.36 19.36h-24.68a19.35 19.35 0 0 1-19.36-19.36v-24.69a19.35 19.35 0 0 1 19.36-19.35h24.68a19.35 19.35 0 0 1 19.36 19.35z"
-    fill="#9CDCF8" p-id="2990"></path>
-  <path d="M581.48 742.83a18.54 18.54 0 1 0 0 37.06h24.68a18.54 18.54 0 1 0 0-37.06z" fill="#C0E7FA" p-id="2991"></path>
+    <path
+      d="M625.52 786.87a19.36 19.36 0 0 1-19.36 19.36h-24.68a19.35 19.35 0 0 1-19.36-19.36v-24.69a19.35 19.35 0 0 1 19.36-19.35h24.68a19.35 19.35 0 0 1 19.36 19.35z"
+      fill="#9CDCF8" p-id="2990"></path>
+    <path d="M581.48 742.83a18.54 18.54 0 1 0 0 37.06h24.68a18.54 18.54 0 1 0 0-37.06z" fill="#C0E7FA" p-id="2991">
+    </path>
   </g>
   <g class="ice-rain">
-  <path
-    d="M790.5 908.94a19.36 19.36 0 0 1-19.36 19.36h-24.68a19.35 19.35 0 0 1-19.36-19.36v-24.69a19.35 19.35 0 0 1 19.36-19.35h24.68a19.35 19.35 0 0 1 19.36 19.35z"
-    fill="#9CDCF8" p-id="2992"></path>
-  <path d="M746.46 864.9a18.54 18.54 0 1 0 0 37.06h24.68a18.54 18.54 0 1 0 0-37.06z" fill="#C0E7FA" p-id="2993"></path>
+    <path
+      d="M790.5 908.94a19.36 19.36 0 0 1-19.36 19.36h-24.68a19.35 19.35 0 0 1-19.36-19.36v-24.69a19.35 19.35 0 0 1 19.36-19.35h24.68a19.35 19.35 0 0 1 19.36 19.35z"
+      fill="#9CDCF8" p-id="2992"></path>
+    <path d="M746.46 864.9a18.54 18.54 0 1 0 0 37.06h24.68a18.54 18.54 0 1 0 0-37.06z" fill="#C0E7FA" p-id="2993">
+    </path>
   </g>
 </svg>

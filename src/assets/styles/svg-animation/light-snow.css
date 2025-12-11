@@ -1,0 +1,15 @@
+@keyframes snowFall {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(30px);
+    opacity: 0.3;
+  }
+}
+
+.snow-flake {
+  animation: snowFall 3s ease-in infinite;
+}

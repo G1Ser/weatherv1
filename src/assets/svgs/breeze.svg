@@ -4,25 +4,7 @@
   xmlns:xlink="http://www.w3.org/1999/xlink" width="14.341796875" height="14">
   <defs>
     <style>
-      @keyframes gentleWind {
-
-        0%,
-        100% {
-          transform: translateX(0);
-        }
-
-        50% {
-          transform: translateX(40px);
-        }
-      }
-
-      .wind-line {
-        animation: gentleWind 3s ease-in-out infinite;
-      }
-
-      .wind-line:nth-child(2) {
-        animation-delay: 0.5s;
-      }
+      @import url('../styles/svg-animation/breeze.css');
     </style>
   </defs>
   <path class="wind-line"

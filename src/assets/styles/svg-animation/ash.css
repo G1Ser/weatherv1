@@ -1,0 +1,58 @@
+@keyframes ashFloat {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.5;
+  }
+
+  25% {
+    transform: translateY(-3px) translateX(2px);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: translateY(-5px) translateX(-2px);
+    opacity: 1;
+  }
+
+  75% {
+    transform: translateY(-3px) translateX(1px);
+    opacity: 0.7;
+  }
+}
+
+.ash-particle {
+  animation: ashFloat 3.5s ease-in-out infinite;
+}
+
+.ash-particle:nth-of-type(1) {
+  animation-delay: 0s;
+}
+
+.ash-particle:nth-of-type(2) {
+  animation-delay: 0.4s;
+}
+
+.ash-particle:nth-of-type(3) {
+  animation-delay: 0.8s;
+}
+
+.ash-particle:nth-of-type(4) {
+  animation-delay: 1.2s;
+}
+
+.ash-particle:nth-of-type(5) {
+  animation-delay: 1.6s;
+}
+
+.ash-particle:nth-of-type(6) {
+  animation-delay: 2s;
+}
+
+.ash-particle:nth-of-type(7) {
+  animation-delay: 2.4s;
+}
+
+.ash-particle:nth-of-type(8) {
+  animation-delay: 2.8s;
+}

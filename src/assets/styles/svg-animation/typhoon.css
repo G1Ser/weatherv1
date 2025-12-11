@@ -1,0 +1,37 @@
+@keyframes typhoonSpin {
+  0% {
+    transform: rotate(0deg);
+    scale: 0.5;
+  }
+
+  50% {
+    transform: rotate(180deg);
+    scale: 1;
+  }
+
+  100% {
+    transform: rotate(360deg);
+    scale: 0.5;
+  }
+}
+
+@keyframes typhoonPulse {
+  0%,
+  100% {
+    transform: scale(0.5);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+}
+
+.typhoon-rotate {
+  animation: typhoonSpin 30s linear infinite;
+  transform-origin: 519px 509px;
+}
+
+.typhoon-shape {
+  animation: typhoonPulse 30s ease-in-out infinite;
+  transform-origin: 519px 509px;
+}

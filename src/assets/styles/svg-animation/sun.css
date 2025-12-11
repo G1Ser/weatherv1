@@ -1,0 +1,6 @@
+@import url('./base.css');
+
+.sun-rays {
+  animation: rotate360 20s linear infinite;
+  transform-origin: 511.3px 513.2px;
+}

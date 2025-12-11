@@ -1,0 +1,33 @@
+@import url('./base.css');
+
+@keyframes sunRiseSet {
+  0% {
+    transform: translateY(150px);
+    opacity: 0;
+  }
+
+  25% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  75% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(150px);
+    opacity: 0;
+  }
+}
+
+.sun-group--home {
+  animation: sunRiseSet 3s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.sun-rays--home {
+  animation: rotate360 6s linear infinite;
+  transform-origin: 628.363636px 395.636364px;
+}

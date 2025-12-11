@@ -1,0 +1,44 @@
+@keyframes rainDrop {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(200px);
+    opacity: 0;
+  }
+}
+
+@keyframes lightning {
+  0%,
+  45%,
+  55%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.thunder-drop {
+  animation: rainDrop 2s ease-in infinite;
+}
+
+.thunder-drop:nth-of-type(1) {
+  animation-delay: 0s;
+}
+
+.thunder-drop:nth-of-type(2) {
+  animation-delay: 0.5s;
+}
+
+.thunder-drop:nth-of-type(3) {
+  animation-delay: 1s;
+}
+
+.thunder-lightning {
+  animation: lightning 1.5s ease-in-out infinite;
+}

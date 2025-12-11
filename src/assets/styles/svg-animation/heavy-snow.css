@@ -1,0 +1,47 @@
+@keyframes heavySnowFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(10px) rotate(360deg);
+    opacity: 0.2;
+  }
+}
+
+.heavy-snow {
+  animation: heavySnowFall 2.5s ease-in infinite;
+}
+
+.heavy-snow:nth-of-type(1) {
+  animation-delay: 0s;
+}
+
+.heavy-snow:nth-of-type(2) {
+  animation-delay: 0.5s;
+}
+
+.heavy-snow:nth-of-type(3) {
+  animation-delay: 1s;
+}
+
+.heavy-snow:nth-of-type(4) {
+  animation-delay: 1.5s;
+}
+
+.heavy-snow:nth-of-type(5) {
+  animation-delay: 2s;
+}
+
+.heavy-snow:nth-of-type(6) {
+  animation-delay: 0.5s;
+}
+
+.heavy-snow:nth-of-type(7) {
+  animation-delay: 2.5s;
+}
+
+.heavy-snow:nth-of-type(8) {
+  animation-delay: 4.5s;
+}

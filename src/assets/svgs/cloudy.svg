@@ -4,36 +4,7 @@
   xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14">
   <defs>
     <style>
-      @keyframes sunRotateCloudy {
-        from {
-          transform: rotate(0deg);
-        }
-
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
-      @keyframes cloudFloat {
-
-        0%,
-        100% {
-          transform: translateX(0);
-        }
-
-        50% {
-          transform: translateX(40px);
-        }
-      }
-
-      .cloudy-sun-rays {
-        animation: sunRotateCloudy 25s linear infinite;
-        transform-origin: 695.5px 333.4px;
-      }
-
-      .cloudy-cloud {
-        animation: cloudFloat 4s ease-in-out infinite;
-      }
+      @import url('../styles/svg-animation/cloudy.css');
     </style>
   </defs>
   <path class="cloudy-sun-rays"

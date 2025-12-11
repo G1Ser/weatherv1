@@ -1,0 +1,56 @@
+@import url('./base.css');
+
+@keyframes dustSwirl {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.6;
+  }
+
+  25% {
+    transform: translate(3px, -2px) rotate(90deg);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: translate(5px, 2px) rotate(180deg);
+    opacity: 1;
+  }
+
+  75% {
+    transform: translate(2px, -3px) rotate(270deg);
+    opacity: 0.8;
+  }
+}
+
+.dust-particle {
+  animation: dustSwirl 4s ease-in-out infinite;
+}
+
+.dust-particle:nth-of-type(1) {
+  animation-delay: 0s;
+}
+
+.dust-particle:nth-of-type(2) {
+  animation-delay: 0.5s;
+}
+
+.dust-particle:nth-of-type(3) {
+  animation-delay: 1s;
+}
+
+.dust-particle:nth-of-type(4) {
+  animation-delay: 1.5s;
+}
+
+.dust-wind {
+  animation: moveRight 5s ease-in-out infinite;
+}
+
+.dust-wind:nth-of-type(1) {
+  animation-delay: 0s;
+}
+
+.dust-wind:nth-of-type(2) {
+  animation-delay: 0.4s;
+}

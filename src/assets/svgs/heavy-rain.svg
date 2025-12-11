@@ -4,67 +4,7 @@
   xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14">
   <defs>
     <style>
-      @keyframes rainDropHeavy {
-        0% {
-          transform: translateY(0) scaleY(1);
-          opacity: 1;
-        }
-
-        60% {
-          opacity: 1;
-        }
-
-        100% {
-          transform: translateY(30px) scaleY(1.5);
-          opacity: 0;
-        }
-      }
-
-      @keyframes cloudFloat {
-
-        0%,
-        100% {
-          transform: translateX(0);
-          opacity: 0.4;
-        }
-
-        50% {
-          transform: translateX(10px);
-          opacity: 0.8;
-        }
-      }
-
-      .heavy-rain-drop {
-        animation: rainDropHeavy 1s ease-in infinite;
-      }
-
-      .heavy-rain-drop:nth-of-type(1) {
-        animation-delay: 0s;
-      }
-
-      .heavy-rain-drop:nth-of-type(2) {
-        animation-delay: 0.1s;
-      }
-
-      .heavy-rain-drop:nth-of-type(3) {
-        animation-delay: 0.2s;
-      }
-
-      .heavy-rain-drop:nth-of-type(4) {
-        animation-delay: 0.3s;
-      }
-
-      .heavy-rain-drop:nth-of-type(5) {
-        animation-delay: 0.4s;
-      }
-
-      .heavy-rain-drop:nth-of-type(6) {
-        animation-delay: 0.5s;
-      }
-
-      .rain-cloud {
-        animation: cloudFloat 5s ease-in-out infinite;
-      }
+      @import url('../styles/svg-animation/heavy-rain.css');
     </style>
   </defs>
   <g class="heavy-rain-drop">

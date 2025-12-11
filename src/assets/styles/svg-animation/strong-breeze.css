@@ -1,0 +1,9 @@
+@import url('./base.css');
+
+.strong-wind-line {
+  animation: moveRight 2s ease-in-out infinite;
+}
+
+.strong-wind-line:nth-child(2) {
+  animation-delay: 0.5s;
+}

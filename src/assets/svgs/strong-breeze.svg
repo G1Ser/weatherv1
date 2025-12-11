@@ -4,25 +4,7 @@
   xmlns:xlink="http://www.w3.org/1999/xlink" width="14.341796875" height="14">
   <defs>
     <style>
-      @keyframes strongWind {
-
-        0%,
-        100% {
-          transform: translateX(-5px);
-        }
-
-        50% {
-          transform: translateX(30px);
-        }
-      }
-
-      .strong-wind-line {
-        animation: strongWind 2s ease-in-out infinite;
-      }
-
-      .strong-wind-line:nth-child(2) {
-        animation-delay: 0.3s;
-      }
+      @import url('../styles/svg-animation/strong-breeze.css');
     </style>
   </defs>
   <path class="strong-wind-line"

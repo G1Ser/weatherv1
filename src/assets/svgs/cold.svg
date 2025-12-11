@@ -4,29 +4,7 @@
   xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14">
   <defs>
     <style>
-      @keyframes coldShiver {
-
-        0%,
-        100% {
-          transform: translate(0, 0) scale(1);
-          opacity: 0.8;
-        }
-
-        33% {
-          transform: translate(-1px, 0px) scale(0.9);
-          opacity: 0.5;
-        }
-
-        66% {
-          transform: translate(-1px, 0px) scale(1.1);
-          opacity: 1;
-        }
-      }
-
-      .cold-snowflake {
-        animation: coldShiver 10s ease-in-out infinite;
-        transform-origin: 512px 512px;
-      }
+      @import url('../styles/svg-animation/cold.css');
     </style>
   </defs>
   <g class="cold-snowflake">

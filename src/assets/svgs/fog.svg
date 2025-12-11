@@ -4,41 +4,7 @@
   xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14">
   <defs>
     <style>
-      @keyframes fogFade {
-
-        0%,
-        100% {
-          opacity: 0.4;
-        }
-
-        50% {
-          opacity: 0.8;
-        }
-      }
-
-      @keyframes fogDrift {
-
-        0%,
-        100% {
-          transform: translateX(0);
-        }
-
-        50% {
-          transform: translateX(40px);
-        }
-      }
-
-      .fog-layer {
-        animation: fogFade 4s ease-in-out infinite, fogDrift 5s ease-in-out infinite;
-      }
-
-      .fog-layer:nth-of-type(2) {
-        animation-delay: 0.5s, 0.7s;
-      }
-
-      .fog-layer:nth-of-type(3) {
-        animation-delay: 1s, 1.4s;
-      }
+      @import url('../styles/svg-animation/fog.css');
     </style>
   </defs>
   <path
@@ -55,13 +21,9 @@
     <path
       d="M909.61 906a22.26 22.26 0 0 1-22.26 22.27h-748.7A22.26 22.26 0 0 1 116.39 906a22.26 22.26 0 0 1 22.26-22.26h748.7A22.26 22.26 0 0 1 909.61 906z"
       fill="#9CDCF8" p-id="3848"></path>
-  </g>
-  <g class="fog-layer">
     <path
       d="M343.9 765.09a22.26 22.26 0 0 1-22.26 22.27h-183a22.26 22.26 0 0 1-22.26-22.27 22.26 22.26 0 0 1 22.26-22.26h183a22.26 22.26 0 0 1 22.26 22.26z"
       fill="#9CDCF8" p-id="3848"></path>
-  </g>
-  <g class="fog-layer">
     <path d="M887.35 742.83H421.51a22.26 22.26 0 0 0 0 44.53h465.84a22.26 22.26 0 0 0 0-44.53z" fill="#9CDCF8"
       p-id="3848"></path>
   </g>

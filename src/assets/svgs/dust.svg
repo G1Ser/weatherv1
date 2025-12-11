@@ -4,75 +4,23 @@
   xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14">
   <defs>
     <style>
-      @keyframes dustSwirl {
-
-        0%,
-        100% {
-          transform: translate(0, 0) rotate(0deg);
-          opacity: 0.6;
-        }
-
-        25% {
-          transform: translate(3px, -2px) rotate(90deg);
-          opacity: 0.8;
-        }
-
-        50% {
-          transform: translate(5px, 2px) rotate(180deg);
-          opacity: 1;
-        }
-
-        75% {
-          transform: translate(2px, -3px) rotate(270deg);
-          opacity: 0.8;
-        }
-      }
-
-      @keyframes dustWave {
-
-        0%,
-        100% {
-          transform: translateX(0);
-        }
-
-        50% {
-          transform: translateX(40px);
-        }
-      }
-
-      .dust-particle {
-        animation: dustSwirl 4s ease-in-out infinite;
-      }
-
-      .dust-particle:nth-of-type(1) {
-        animation-delay: 0s;
-      }
-
-      .dust-particle:nth-of-type(2) {
-        animation-delay: 0.5s;
-      }
-
-      .dust-particle:nth-of-type(3) {
-        animation-delay: 1s;
-      }
-
-      .dust-particle:nth-of-type(4) {
-        animation-delay: 1.5s;
-      }
-
-      .dust-wind {
-        animation: dustWave 5s ease-in-out infinite;
-      }
-
-      .dust-wind:nth-of-type(1) {
-        animation-delay: 0s;
-      }
-
-      .dust-wind:nth-of-type(2) {
-        animation-delay: 0.4s;
-      }
+      @import url('../styles/svg-animation/dust.css');
     </style>
   </defs>
+  <g class="dust-particle">
+    <path d="M210.39 405.5a41.38 41.39 0 1 0 82.76 0 41.38 41.39 0 1 0-82.76 0Z" fill="#9CDCF8" p-id="3676"></path>
+  </g>
+  <g class="dust-particle">
+    <path d="M554.93 405.5a41.39 41.39 0 1 1-41.39-41.39 41.4 41.4 0 0 1 41.39 41.39z" fill="#9CDCF8" p-id="3677">
+    </path>
+  </g>
+  <g class="dust-particle">
+    <path d="M210.39 623.5a41.38 41.39 0 1 0 82.76 0 41.38 41.39 0 1 0-82.76 0Z" fill="#9CDCF8" p-id="3678"></path>
+  </g>
+  <g class="dust-particle">
+    <path d="M554.93 623.5a41.39 41.39 0 1 1-41.39-41.39 41.4 41.4 0 0 1 41.39 41.39z" fill="#9CDCF8" p-id="3679">
+    </path>
+  </g>
   <g class="dust-wind">
     <path
       d="M921.08 361.57c-18.37-32.55-49.66-50.41-88.22-50.41h-1.31c-37.86 0.4-76.54 21-90 47.83-24.17 48.35-11.49 93.33-10.94 95.22h0.12a22.17 22.17 0 0 0 43.24-7 21.87 21.87 0 0 0-1.13-6.64c-1.3-5.86-6.1-32.91 8.33-61.78 4.78-9.57 26.44-23.09 50.82-23.34 23.07-0.31 39.91 9.14 50.49 27.88a78.47 78.47 0 0 1 10 35.65c0.68 14.35-5.24 26.61-12.47 40-14.75 27.33-62.17 33.3-79.34 33.3H112.09c-0.23 0-0.45-0.07-0.67-0.07s-0.45 0.07-0.67 0.07h-1.2v0.13a22.11 22.11 0 0 0 0 44.08v0.09h1c0.31 0 0.61 0.1 0.92 0.1s0.61-0.08 0.92-0.1h688.3c6 0 88.3-1 118.27-56.55 9.23-17.1 19-37.49 17.74-63.17-0.97-20.29-6.08-38.37-15.62-55.29z"
@@ -87,19 +35,5 @@
     <path
       d="M110.41 710.51v-0.2h653.8l2 0.38c3.43 0.63 34 7.12 52.77 37.62 8.84 14.36 12.95 28.35 12.55 42.79a78 78 0 0 1-10.22 38c-13 22.94-34.41 35.35-62.05 35.88-24.4 0.7-46.71-10.62-61.33-30.44a70.72 70.72 0 0 1-13.62-38 21.07 21.07 0 0 1-0.29-2.85 21.65 21.65 0 0 1 0.24-2.34c0-0.57 0.06-1 0.07-1.25h0.06a22.19 22.19 0 0 1 44.1 3.58v0.14a26.76 26.76 0 0 0 5.13 14.39 29.65 29.65 0 0 0 24.19 12.44h0.63c12.05-0.24 19.1-4.11 24.34-13.38 3.53-6.25 4.34-11.3 4.51-17.42 0.16-5.7-1.68-11.37-6-18.36a40.16 40.16 0 0 0-21.82-16.9H114a22.14 22.14 0 1 1-3.58-44.1z"
       fill="#9CDCF8" p-id="3675"></path>
-  </g>
-  <g class="dust-particle">
-    <path d="M210.39 405.5a41.38 41.39 0 1 0 82.76 0 41.38 41.39 0 1 0-82.76 0Z" fill="#9CDCF8" p-id="3676"></path>
-  </g>
-  <g class="dust-particle">
-    <path d="M554.93 405.5a41.39 41.39 0 1 1-41.39-41.39 41.4 41.4 0 0 1 41.39 41.39z" fill="#9CDCF8" p-id="3677">
-    </path>
-  </g>
-  <g class="dust-particle">
-    <path d="M210.39 623.5a41.38 41.39 0 1 0 82.76 0 41.38 41.39 0 1 0-82.76 0Z" fill="#9CDCF8" p-id="3678"></path>
-  </g>
-  <g class="dust-particle">
-    <path d="M554.93 623.5a41.39 41.39 0 1 1-41.39-41.39 41.4 41.4 0 0 1 41.39 41.39z" fill="#9CDCF8" p-id="3679">
-    </path>
   </g>
 </svg>

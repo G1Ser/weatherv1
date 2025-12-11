@@ -4,33 +4,7 @@
   xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14">
   <defs>
     <style>
-      @keyframes rainDrop {
-        0% {
-          transform: translateY(0) scaleY(1);
-          opacity: 1;
-        }
-
-        70% {
-          opacity: 1;
-        }
-
-        100% {
-          transform: translateY(40px) scaleY(1.2);
-          opacity: 0;
-        }
-      }
-
-      .light-rain-drop1 {
-        animation: rainDrop 5s ease-in infinite;
-      }
-
-      .light-rain-drop2 {
-        animation: rainDrop 5s ease-in infinite 1s;
-      }
-
-      .light-rain-drop3 {
-        animation: rainDrop 5s ease-in infinite 2.5s;
-      }
+      @import url('../styles/svg-animation/light-rain.css')
     </style>
   </defs>
   <path
