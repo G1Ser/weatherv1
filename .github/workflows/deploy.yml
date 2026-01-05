@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main # 当推送到 main 分支时触发
+      - main
 
 permissions:
   contents: write
@@ -16,20 +16,26 @@ jobs:
       - name: Checkout 代码
         uses: actions/checkout@v4
 
+      - name: 安装 pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10
+
       - name: 设置 Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: 安装依赖
-        run: npm install
+        run: pnpm install
 
       - name: 构建项目
-        run: npm run build
+        run: pnpm build
         env:
-          VUE_APP_LOCAL_LOCATION: '北京'
-          VUE_APP_AMAP_API_PROD: 'https://wt-prod-k8m3.chauncey.work'
+          VUE_APP_AMAP_API_PROD: https://wt-prod-k8m3.chauncey.work
+          VUE_APP_LOCAL_LOCATION: 北京
+          NODE_ENV: production
 
       - name: 部署到 GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

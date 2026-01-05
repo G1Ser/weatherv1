@@ -1,5 +1,7 @@
 @import url('./base.css');
+
 @keyframes fogFade {
+
   0%,
   100% {
     opacity: 0.4;

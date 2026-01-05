@@ -9,6 +9,7 @@
 }
 
 @keyframes moveRight {
+
   0%,
   100% {
     transform: translateX(-40px);
@@ -16,5 +17,35 @@
 
   50% {
     transform: translateX(80px);
+  }
+}
+
+@keyframes drop {
+  0% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(100px);
+  }
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    transform: scale(1.2);
   }
 }
