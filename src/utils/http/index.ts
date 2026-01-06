@@ -27,7 +27,7 @@ axiosInstance.interceptors.response.use(res => {
 });
 
 // 创建类型声明，使http直接返回响应数据而不是AxiosResponse
-function http<T = any>(config: AxiosRequestConfig): Promise<T> {
+function http<T = unknown>(config: AxiosRequestConfig): Promise<T> {
   return axiosInstance(config) as unknown as Promise<T>;
 }
 

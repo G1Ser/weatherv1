@@ -1,7 +1,6 @@
 @import url('./base.css');
 
 @keyframes fogFade {
-
   0%,
   100% {
     opacity: 0.4;
@@ -13,5 +12,7 @@
 }
 
 .fog-layer {
-  animation: fogFade 4s ease-in-out infinite, moveRight 5s ease-in-out infinite;
+  animation:
+    fogFade 4s ease-in-out infinite,
+    moveRight 5s ease-in-out infinite;
 }

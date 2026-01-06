@@ -1,15 +1,21 @@
 const fs = require('fs');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const Dotenv = require('dotenv-webpack');
+// 移除所有的注解、console和debugger语句
+const TerserPlugin = require('terser-webpack-plugin');
+// 获取Git版本信息
+const { GitRevisionPlugin } = require('git-revision-webpack-plugin');
+// 注册全局变量
+const { DefinePlugin } = require('webpack');
 const { codeInspectorPlugin } = require('code-inspector-plugin');
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
   const envFile = isProduction ? '.env.production' : '.env.development';
+  const gitRevisionPlugin = new GitRevisionPlugin({ lightweightTags: true, branch: true });
   const config = {
     mode: isProduction ? 'production' : 'development',
     entry: './src/main.ts',
@@ -84,23 +90,20 @@ module.exports = (env, argv) => {
     plugins: [
       new VueLoaderPlugin(),
       new Dotenv({
-        path: fs.existsSync(path.resolve(__dirname, envFile)) ? path.resolve(__dirname, envFile) : path.resolve(__dirname, '.env'),
+        path: fs.existsSync(path.resolve(__dirname, envFile))
+          ? path.resolve(__dirname, envFile)
+          : path.resolve(__dirname, '.env'),
         systemvars: true,
       }),
       new HtmlWebpackPlugin({
         template: './index.html',
+        title: '天气预报',
+        favicon: path.resolve(__dirname, 'public', 'favicon.ico'),
       }),
-      new CopyWebpackPlugin({
-        patterns: [
-          {
-            from: path.resolve(__dirname, 'public'),
-            to: path.resolve(__dirname, 'dist'),
-            globOptions: {
-              ignore: ['**/index.html'],
-            },
-            noErrorOnMissing: true,
-          },
-        ],
+      new DefinePlugin({
+        __GIT_VERSION__: JSON.stringify(gitRevisionPlugin.version()),
+        __GIT_BRANCH__: JSON.stringify(gitRevisionPlugin.branch()),
+        __BUILD_TIME__: JSON.stringify(new Date().toISOString()),
       }),
       codeInspectorPlugin({ bundler: 'webpack' }),
       ...(isProduction
@@ -112,6 +115,21 @@ module.exports = (env, argv) => {
         : []),
     ],
     optimization: {
+      minimize: isProduction,
+      minimizer: [
+        new TerserPlugin({
+          extractComments: false,
+          terserOptions: {
+            format: {
+              comments: false, //删除所有注解
+            },
+            compress: {
+              drop_debugger: true, //移除所有debugger语句
+              pure_funcs: ['console.log'], // 移除console.log语句
+            },
+          },
+        }),
+      ],
       splitChunks: {
         cacheGroups: {
           'vue-vendor': {

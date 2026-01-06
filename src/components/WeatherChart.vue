@@ -30,195 +30,194 @@
 </template>
 
 <script lang="ts">
-  import type { PropType } from 'vue';
-  import type { ECharts } from 'echarts/core';
-  import { init, use } from 'echarts/core';
-  import { LineChart } from 'echarts/charts';
-  import { GridComponent } from 'echarts/components';
-  import { CanvasRenderer } from 'echarts/renderers';
-  import { debounce } from 'lodash-es';
-  import SvgIcon from '@/components/SvgIcon.vue';
-  import SkeletonItem from '@/components/SkeletonItem.vue';
-  import type { WeatherChartDataType } from '@/types/gmap';
+import type { PropType } from 'vue';
+import type { ECharts } from 'echarts/core';
+import { init, use } from 'echarts/core';
+import { LineChart } from 'echarts/charts';
+import { GridComponent } from 'echarts/components';
+import { CanvasRenderer } from 'echarts/renderers';
+import { debounce } from 'lodash-es';
+import SvgIcon from '@/components/SvgIcon.vue';
+import SkeletonItem from '@/components/SkeletonItem.vue';
+import type { WeatherChartDataType } from '@/types/gmap';
 
-  use([LineChart, GridComponent, CanvasRenderer]);
+use([LineChart, GridComponent, CanvasRenderer]);
 
-  export default {
-    name: 'WeatherChart',
-    components: {
-      SvgIcon,
-      SkeletonItem,
+export default {
+  name: 'WeatherChart',
+  components: {
+    SvgIcon,
+    SkeletonItem,
+  },
+  props: {
+    casts: {
+      type: Array as PropType<WeatherChartDataType[]>,
+      default: () => [],
     },
-    props: {
-      casts: {
-        type: Array as PropType<WeatherChartDataType[]>,
-        required: true,
-        default: () => [],
-      },
-      isLoading: {
-        type: Boolean,
-        required: true,
-      },
+    isLoading: {
+      type: Boolean,
+      required: true,
     },
-    data() {
-      return {
-        chartInstance: null as ECharts | null,
-        handleResize: null as any,
-      };
-    },
-    created() {
-      this.handleResize = debounce(() => {
-        this.chartInstance?.resize();
-      }, 300);
-    },
-    mounted() {
-      window.addEventListener('resize', this.handleResize);
-    },
-    beforeDestroy() {
-      window.removeEventListener('resize', this.handleResize);
-      if (this.chartInstance) {
-        this.chartInstance.dispose();
+  },
+  data() {
+    return {
+      chartInstance: null as ECharts | null,
+      handleResize: null as any,
+    };
+  },
+  watch: {
+    isLoading(newVal) {
+      if (!newVal) {
+        this.$nextTick(() => {
+          this.initChart();
+        });
       }
     },
-    methods: {
-      initChart() {
-        if (this.$refs.chartRef) {
-          this.chartInstance = init(this.$refs.chartRef as HTMLElement);
-          this.renderChart();
-        }
-      },
-      renderChart() {
-        if (!this.chartInstance || !this.casts || this.casts.length === 0) return;
+  },
+  created() {
+    this.handleResize = debounce(() => {
+      this.chartInstance?.resize();
+    }, 300);
+  },
+  mounted() {
+    window.addEventListener('resize', this.handleResize);
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+    if (this.chartInstance) {
+      this.chartInstance.dispose();
+    }
+  },
+  methods: {
+    initChart() {
+      if (this.$refs.chartRef) {
+        this.chartInstance = init(this.$refs.chartRef as HTMLElement);
+        this.renderChart();
+      }
+    },
+    renderChart() {
+      if (!this.chartInstance || !this.casts || this.casts.length === 0) return;
 
-        const option = {
-          grid: {
-            left: '12.5%',
-            right: '12.5%',
-            top: '15%',
-            bottom: '10%',
-          },
-          xAxis: {
-            type: 'category',
-            boundaryGap: false,
-            data: this.casts.map(c => c.date),
-            show: false,
-          },
-          yAxis: {
-            type: 'value',
-            show: false,
-          },
-          series: [
-            {
-              name: '最高温',
-              type: 'line',
-              data: this.casts.map(c => c.maxTemp),
-              smooth: true,
-              itemStyle: {
-                color: '#FF5733',
-              },
-              lineStyle: {
-                width: 2,
-              },
-              symbol: 'circle',
-              symbolSize: 6,
-              label: {
-                show: true,
-                position: 'top',
-                formatter: '{c}°C',
-              },
+      const option = {
+        grid: {
+          left: '12.5%',
+          right: '12.5%',
+          top: '15%',
+          bottom: '10%',
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: this.casts.map(c => c.date),
+          show: false,
+        },
+        yAxis: {
+          type: 'value',
+          show: false,
+        },
+        series: [
+          {
+            name: '最高温',
+            type: 'line',
+            data: this.casts.map(c => c.maxTemp),
+            smooth: true,
+            itemStyle: {
+              color: '#FF5733',
             },
-            {
-              name: '最低温',
-              type: 'line',
-              data: this.casts.map(c => c.minTemp),
-              smooth: true,
-              itemStyle: {
-                color: '#33AFFF',
-              },
-              lineStyle: {
-                width: 2,
-              },
-              symbol: 'circle',
-              symbolSize: 6,
-              label: {
-                show: true,
-                position: 'bottom',
-                formatter: '{c}°C',
-              },
+            lineStyle: {
+              width: 2,
             },
-          ],
-        };
-        this.chartInstance.setOption(option);
-      },
+            symbol: 'circle',
+            symbolSize: 6,
+            label: {
+              show: true,
+              position: 'top',
+              formatter: '{c}°C',
+            },
+          },
+          {
+            name: '最低温',
+            type: 'line',
+            data: this.casts.map(c => c.minTemp),
+            smooth: true,
+            itemStyle: {
+              color: '#33AFFF',
+            },
+            lineStyle: {
+              width: 2,
+            },
+            symbol: 'circle',
+            symbolSize: 6,
+            label: {
+              show: true,
+              position: 'bottom',
+              formatter: '{c}°C',
+            },
+          },
+        ],
+      };
+      this.chartInstance.setOption(option);
     },
-    watch: {
-      isLoading(newVal) {
-        if (!newVal) {
-          this.$nextTick(() => {
-            this.initChart();
-          });
-        }
-      },
-    },
-  };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .chart-container {
-    width: 100%;
-    height: 400px;
-    padding: 10px;
-    background-color: var(--secondary-color);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-  }
+.chart-container {
+  width: 100%;
+  height: 400px;
+  padding: 10px;
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
 
-  .chart-header {
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
-    padding-bottom: 10px;
-  }
+.chart-header {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  padding-bottom: 10px;
+}
 
-  .header-item {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    align-items: center;
-    p {
-      margin: 2px 0;
-    }
+.header-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  p {
+    margin: 2px 0;
   }
+}
 
-  .chart-body {
-    width: 100%;
-    height: 200px;
-  }
+.chart-body {
+  width: 100%;
+  height: 200px;
+}
 
-  .skeleton-chart {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-  }
+.skeleton-chart {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
 
-  .skeleton-header {
-    display: flex;
-    justify-content: space-around;
-    padding-bottom: 10px;
-  }
+.skeleton-header {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 10px;
+}
 
-  .skeleton-header-item {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.skeleton-header-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .skeleton-body {
-    width: 100%;
-    height: 200px;
-  }
+.skeleton-body {
+  width: 100%;
+  height: 200px;
+}
 </style>

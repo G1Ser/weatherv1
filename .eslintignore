@@ -1,0 +1,10 @@
+.github
+dist
+node_modules
+public
+.babelrc
+.env*
+.eslintrc.js
+.prettierrc.js
+*.config.js
+*.min.js

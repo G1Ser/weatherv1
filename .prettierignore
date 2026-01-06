@@ -1,0 +1,5 @@
+.github
+dist
+public
+node_modules
+.babelrc

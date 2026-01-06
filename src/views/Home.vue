@@ -5,7 +5,12 @@
       <div v-if="showPopper" class="popper">
         <div v-if="isSearching" class="popper-item">正在搜索...</div>
         <template v-else>
-          <div v-for="result in searchResults" :key="result.adcode" class="popper-item" @click="goToCity(result.adcode)">
+          <div
+            v-for="result in searchResults"
+            :key="result.adcode"
+            class="popper-item"
+            @click="goToCity(result.adcode)"
+          >
             {{ getCityName(result) }}
           </div>
           <div v-if="!searchResults.length" class="popper-item">找不到该地区</div>
@@ -29,242 +34,242 @@
 </template>
 
 <script lang="ts">
-  import { mapGetters } from 'vuex';
-  import { debounce } from 'lodash-es';
-  import WeatherChart from '@/components/WeatherChart.vue';
-  import { formatWeatherCasts } from '@/utils/gmap';
-  import type { WeatherChartDataType, GeocodeType } from '@/types/gmap';
-  import { getWeather, getGeocode } from '@/api/gmap';
+import { mapGetters } from 'vuex';
+import { debounce } from 'lodash-es';
+import WeatherChart from '@/components/WeatherChart.vue';
+import { formatWeatherCasts } from '@/utils/gmap';
+import type { WeatherChartDataType, GeocodeType } from '@/types/gmap';
+import { getWeather, getGeocode } from '@/api/gmap';
 
-  export default {
-    name: 'Home',
-    components: {
-      WeatherChart,
-    },
-    data() {
-      return {
-        nameFieldMap: Object.freeze({
-          省: 'province',
-          市: 'city',
-          区: 'district',
-          县: 'district',
-        }),
-        casts: [] as WeatherChartDataType[],
-        isLoading: true,
-        searchAddress: '',
-        searchResults: [] as GeocodeType[],
-        isSearching: false,
-        showPopper: false,
-        debouncedSearch: null as (() => void) | null,
-        favoriteCities: [] as { adcode: string; name: string }[],
-      };
-    },
-    computed: {
-      ...mapGetters('IP', ['localGeocode']),
-    },
-    created() {
-      this.debouncedSearch = debounce(async () => {
-        if (!this.searchAddress.trim()) {
-          this.isSearching = false;
-          return;
-        }
-        try {
-          const geocodeInfo = await getGeocode(this.searchAddress);
-          this.searchResults = geocodeInfo.geocodes || [];
-        } finally {
-          this.isSearching = false;
-        }
-      }, 300);
-      this.loadFavorites();
-    },
-    methods: {
-      async fetchWeatherData(geocode: string) {
-        this.isLoading = true;
-        try {
-          const weatherInfo = await getWeather(geocode, 'all');
-          if (weatherInfo.forecasts && weatherInfo.forecasts.length > 0) {
-            this.casts = formatWeatherCasts(weatherInfo.forecasts[0].casts);
-          }
-        } finally {
-          this.isLoading = false;
-        }
-      },
-      getCityName(result: GeocodeType) {
-        const keys = Object.keys(this.nameFieldMap);
-        if (keys.includes(result.level)) {
-          const level = result.level as keyof typeof this.nameFieldMap;
-          return result[this.nameFieldMap[level]];
-        }
-        return '找不到该地区';
-      },
-      goToCity(adcode: string) {
-        this.$router.push({ name: 'City', params: { adcode } });
-      },
-      loadFavorites() {
-        this.favoriteCities = JSON.parse(localStorage.getItem('favoriteCities') || '[]');
-      },
-      deleteFavorite(adcode: string) {
-        this.favoriteCities = this.favoriteCities.filter(city => city.adcode !== adcode);
-        localStorage.setItem('favoriteCities', JSON.stringify(this.favoriteCities));
-      },
-    },
-    watch: {
-      localGeocode: {
-        immediate: true,
-        handler(newVal) {
-          if (newVal) {
-            this.fetchWeatherData(newVal);
-          }
-        },
-      },
-      searchAddress(newVal) {
-        if (newVal.trim()) {
-          this.showPopper = true;
-          this.isSearching = true;
-          this.debouncedSearch?.();
-        } else {
-          this.showPopper = false;
-          this.searchResults = [];
+export default {
+  name: 'Home',
+  components: {
+    WeatherChart,
+  },
+  data() {
+    return {
+      nameFieldMap: Object.freeze({
+        省: 'province',
+        市: 'city',
+        区: 'district',
+        县: 'district',
+      }),
+      casts: [] as WeatherChartDataType[],
+      isLoading: true,
+      searchAddress: '',
+      searchResults: [] as GeocodeType[],
+      isSearching: false,
+      showPopper: false,
+      debouncedSearch: null as (() => void) | null,
+      favoriteCities: [] as { adcode: string; name: string }[],
+    };
+  },
+  computed: {
+    ...mapGetters('IP', ['localGeocode']),
+  },
+  watch: {
+    localGeocode: {
+      immediate: true,
+      handler(newVal) {
+        if (newVal) {
+          this.fetchWeatherData(newVal);
         }
       },
     },
-  };
+    searchAddress(newVal) {
+      if (newVal.trim()) {
+        this.showPopper = true;
+        this.isSearching = true;
+        this.debouncedSearch?.();
+      } else {
+        this.showPopper = false;
+        this.searchResults = [];
+      }
+    },
+  },
+  created() {
+    this.debouncedSearch = debounce(async () => {
+      if (!this.searchAddress.trim()) {
+        this.isSearching = false;
+        return;
+      }
+      try {
+        const geocodeInfo = await getGeocode(this.searchAddress);
+        this.searchResults = geocodeInfo.geocodes || [];
+      } finally {
+        this.isSearching = false;
+      }
+    }, 300);
+    this.loadFavorites();
+  },
+  methods: {
+    async fetchWeatherData(geocode: string) {
+      this.isLoading = true;
+      try {
+        const weatherInfo = await getWeather(geocode, 'all');
+        if (weatherInfo.forecasts && weatherInfo.forecasts.length > 0) {
+          this.casts = formatWeatherCasts(weatherInfo.forecasts[0].casts);
+        }
+      } finally {
+        this.isLoading = false;
+      }
+    },
+    getCityName(result: GeocodeType) {
+      const keys = Object.keys(this.nameFieldMap);
+      if (keys.includes(result.level)) {
+        const level = result.level as keyof typeof this.nameFieldMap;
+        return result[this.nameFieldMap[level]];
+      }
+      return '找不到该地区';
+    },
+    goToCity(adcode: string) {
+      this.$router.push({ name: 'City', params: { adcode } });
+    },
+    loadFavorites() {
+      this.favoriteCities = JSON.parse(localStorage.getItem('favoriteCities') || '[]');
+    },
+    deleteFavorite(adcode: string) {
+      this.favoriteCities = this.favoriteCities.filter(city => city.adcode !== adcode);
+      localStorage.setItem('favoriteCities', JSON.stringify(this.favoriteCities));
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .home-container {
-    width: 100%;
-    height: 100%;
-    padding-top: 20px;
-    color: var(--text-color);
+.home-container {
+  width: 100%;
+  height: 100%;
+  padding-top: 20px;
+  color: var(--text-color);
+}
+
+.search-container {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.15);
+  color: var(--text-color);
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+  text-align: center;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
   }
 
-  .search-container {
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 40px;
+  &:focus {
+    border-color: var(--primary-color);
+  }
+}
+
+.popper {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  right: 0;
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 10;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.popper-item {
+  padding: 12px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--primary-color);
   }
 
-  .search-input {
-    width: 100%;
-    padding: 10px 15px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background-color: rgba(255, 255, 255, 0.15);
-    color: var(--text-color);
-    font-size: 16px;
-    outline: none;
-    transition: border-color 0.3s;
-    text-align: center;
+  &:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
 
-    &::placeholder {
-      color: rgba(255, 255, 255, 0.5);
-    }
+.weather-info {
+  & > p {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+}
 
-    &:focus {
-      border-color: var(--primary-color);
-    }
+.chart-container {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+}
+
+.favorites-container {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.favorite-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.3);
   }
 
-  .popper {
-    position: absolute;
-    top: 110%;
-    left: 0;
-    right: 0;
-    background-color: var(--secondary-color);
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    z-index: 10;
-    max-height: 300px;
-    overflow-y: auto;
+  .city-name {
+    font-size: 18px;
+    font-weight: 500;
   }
 
-  .popper-item {
-    padding: 12px 15px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-
-    &:hover {
-      background-color: var(--primary-color);
-    }
-
-    &:not(:last-child) {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-  }
-
-  .weather-info {
-    & > p {
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-  }
-
-  .chart-container {
-    width: 100%;
-    padding: 10px;
-    background-color: var(--secondary-color);
-    border-radius: 10px;
-  }
-
-  .favorites-container {
-    margin-bottom: 30px;
+  .actions {
     display: flex;
-    flex-direction: column;
     gap: 10px;
-  }
 
-  .favorite-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background-color: var(--secondary-color);
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: transform 0.2s;
+    button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: opacity 0.2s;
 
-    &:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, 0.3);
+      &:hover {
+        opacity: 0.9;
+      }
     }
 
-    .city-name {
-      font-size: 18px;
-      font-weight: 500;
+    .view-btn {
+      background-color: var(--primary-color);
+      color: white;
     }
 
-    .actions {
-      display: flex;
-      gap: 10px;
+    .delete-btn {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--text-color);
 
-      button {
-        padding: 6px 12px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 14px;
-        transition: opacity 0.2s;
-
-        &:hover {
-          opacity: 0.9;
-        }
-      }
-
-      .view-btn {
-        background-color: var(--primary-color);
-        color: white;
-      }
-
-      .delete-btn {
-        background-color: rgba(255, 255, 255, 0.1);
-        color: var(--text-color);
-
-        &:hover {
-          background-color: rgba(255, 0, 0, 0.3);
-        }
+      &:hover {
+        background-color: rgba(255, 0, 0, 0.3);
       }
     }
   }
+}
 </style>

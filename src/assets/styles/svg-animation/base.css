@@ -9,7 +9,6 @@
 }
 
 @keyframes moveRight {
-
   0%,
   100% {
     transform: translateX(-40px);
