@@ -4,7 +4,6 @@ declare namespace NodeJS {
   interface ProcessEnv {
     readonly NODE_ENV: 'development' | 'production' | 'test';
     readonly VUE_APP_LOCAL_LOCATION: string;
-    readonly VUE_APP_AMAP_API_DEV: string;
-    readonly VUE_APP_AMAP_API_PROD: string;
+    readonly VUE_APP_AMAP_API: string;
   }
 }

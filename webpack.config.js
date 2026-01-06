@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -7,7 +8,7 @@ const { codeInspectorPlugin } = require('code-inspector-plugin');
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
-
+  const envFile = isProduction ? '.env.production' : '.env.development';
   const config = {
     mode: isProduction ? 'production' : 'development',
     entry: './src/main.ts',
@@ -81,7 +82,9 @@ module.exports = (env, argv) => {
     },
     plugins: [
       new VueLoaderPlugin(),
-      new Dotenv(),
+      new Dotenv({
+        path: fs.existsSync(path.resolve(__dirname, envFile)) ? path.resolve(__dirname, envFile) : path.resolve(__dirname, '.env'),
+      }),
       new HtmlWebpackPlugin({
         template: './index.html',
       }),

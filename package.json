@@ -2,8 +2,9 @@
   "name": "weatherv1",
   "version": "1.0.0",
   "scripts": {
-    "dev": "webpack serve --mode development --stats none",
-    "build": "webpack --mode production"
+    "dev": "webpack serve --mode development",
+    "build": "webpack --mode production",
+    "preview": "webpack serve --mode production"
   },
   "author": "chauncey",
   "devDependencies": {

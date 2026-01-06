@@ -33,9 +33,8 @@ jobs:
       - name: 构建项目
         run: pnpm build
         env:
-          VUE_APP_AMAP_API_PROD: https://wt-prod-k8m3.chauncey.work
+          VUE_APP_AMAP_API: https://wt-prod-k8m3.chauncey.work
           VUE_APP_LOCAL_LOCATION: 北京
-          NODE_ENV: production
 
       - name: 部署到 GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
