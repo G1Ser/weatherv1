@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const Dotenv = require('dotenv-webpack');
@@ -84,9 +85,22 @@ module.exports = (env, argv) => {
       new VueLoaderPlugin(),
       new Dotenv({
         path: fs.existsSync(path.resolve(__dirname, envFile)) ? path.resolve(__dirname, envFile) : path.resolve(__dirname, '.env'),
+        systemvars: true,
       }),
       new HtmlWebpackPlugin({
         template: './index.html',
+      }),
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: path.resolve(__dirname, 'public'),
+            to: path.resolve(__dirname, 'dist'),
+            globOptions: {
+              ignore: ['**/index.html'],
+            },
+            noErrorOnMissing: true,
+          },
+        ],
       }),
       codeInspectorPlugin({ bundler: 'webpack' }),
       ...(isProduction
