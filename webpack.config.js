@@ -10,10 +10,16 @@ const TerserPlugin = require('terser-webpack-plugin');
 const { GitRevisionPlugin } = require('git-revision-webpack-plugin');
 // 注册全局变量
 const { DefinePlugin } = require('webpack');
+// 打包分析
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+// 打包进度条
+const WebpackBar = require('webpackbar');
 const { codeInspectorPlugin } = require('code-inspector-plugin');
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
+  const isAnalyze = process.env.ANALYZE === 'true';
+  const isProfile = process.env.PROFILE === 'true';
   const envFile = isProduction ? '.env.production' : '.env.development';
   const gitRevisionPlugin = new GitRevisionPlugin({ lightweightTags: true, branch: true });
   const config = {
@@ -97,6 +103,11 @@ module.exports = (env, argv) => {
       ],
     },
     plugins: [
+      new WebpackBar({
+        name: isProduction ? '🚀 生产构建' : '⚡ 开发模式',
+        color: isProduction ? '#52c41a' : '#1890ff',
+        profile: isProfile, // 打包速度分析
+      }),
       new VueLoaderPlugin(),
       new Dotenv({
         path: fs.existsSync(path.resolve(__dirname, envFile))
@@ -119,6 +130,18 @@ module.exports = (env, argv) => {
         ? [
             new MiniCssExtractPlugin({
               filename: 'css/[name]-[contenthash:8].css',
+            }),
+          ]
+        : []),
+      // 打包分析
+      ...(isAnalyze
+        ? [
+            new BundleAnalyzerPlugin({
+              analyzerMode: 'server',
+              analyzerPort: 8888,
+              openAnalyzer: true,
+              generateStatsFile: true,
+              statsFilename: 'stats.json',
             }),
           ]
         : []),
