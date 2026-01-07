@@ -28,6 +28,7 @@ export default {
   flex-direction: column;
   width: 100%;
   height: 100%;
+  min-height: 100vh;
   background-color: var(--primary-color);
 }
 header {
@@ -38,6 +39,6 @@ header {
 .router-container {
   width: 100%;
   flex: 1;
-  padding: 0 min(15vw, 200px);
+  padding: 0 min(15vw, 200px) 10px min(15vw, 200px);
 }
 </style>

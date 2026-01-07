@@ -1,6 +1,6 @@
 <template>
   <div class="header-container">
-    <div class="home-btn" @click="toHome">
+    <div class="cursor-pointer" @click="toHome">
       <SvgIcon name="home" size="48px" />
     </div>
     <template v-if="!isLoading">
@@ -19,14 +19,8 @@
         <SkeletonItem style="height: 24px; width: 80px" />
       </div>
     </template>
-    <div v-if="showAddButton" class="add-btn" title="添加收藏" @click="addToFavorites">
-      <SvgIcon name="add" size="32px" />
-    </div>
-    <div v-if="showLimitAlert" class="limit-alert">
-      <div class="alert-content">
-        <p>收藏夹已满（最多10个），请先删除一些城市。</p>
-        <button @click="showLimitAlert = false">关闭</button>
-      </div>
+    <div v-if="showAddButton" class="add-btn cursor-pointer" title="添加收藏" @click="addToFavorites">
+      <SvgIcon name="add" size="16px" />
     </div>
   </div>
 </template>
@@ -35,7 +29,9 @@
 import SvgIcon from './SvgIcon.vue';
 import SkeletonItem from './SkeletonItem.vue';
 import type { WeatherLivesType } from '@/types/gmap';
+import type { FavoriteCity } from '@/types/storage';
 import { getWeather } from '@/api/gmap';
+import storage from '@/utils/localstorage';
 
 export default {
   name: 'AppHeader',
@@ -47,13 +43,10 @@ export default {
     return {
       lives: {} as WeatherLivesType,
       isLoading: true,
-      showLimitAlert: false,
+      showAddButton: false, // 是否显示添加收藏按钮
     };
   },
   computed: {
-    showAddButton(): boolean {
-      return this.$route.name === 'City';
-    },
     localLocation(): string {
       return (this.$store.getters['IP/localLocation'] as string) || '';
     },
@@ -75,6 +68,18 @@ export default {
         }
       },
     },
+    '$route.name': {
+      immediate: true,
+      handler(routeName) {
+        if (routeName === 'City') {
+          const adcode = this.$store.getters['City/adcode'];
+          const favorites = storage.get<FavoriteCity[]>('favoriteCities', []);
+          this.updateShowAddButton(adcode, favorites);
+        } else {
+          this.showAddButton = false;
+        }
+      },
+    },
   },
   methods: {
     toHome() {
@@ -82,37 +87,36 @@ export default {
         this.$router.push('/');
       }
     },
-    async addToFavorites() {
-      const adcode = this.$route.params.adcode;
-      if (!adcode) return;
-
-      const favorites = JSON.parse(localStorage.getItem('favoriteCities') || '[]');
-
-      // Check if already exists
-      if (favorites.some((city: any) => city.adcode === adcode)) {
-        return; // Already favorite
-      }
-
-      if (favorites.length >= 10) {
-        this.showLimitAlert = true;
+    /**
+     * 更新添加按钮的显示状态
+     */
+    updateShowAddButton(adcode: string, favoriteCities: FavoriteCity[]) {
+      if (favoriteCities.length === 0) {
+        this.showAddButton = true;
         return;
       }
+      this.showAddButton = !this.isCityInFavorites(adcode, favoriteCities);
+    },
+    /**
+     * 检查指定城市是否已在收藏列表中
+     */
+    isCityInFavorites(adcode: string, favoriteCities: FavoriteCity[]) {
+      return favoriteCities.some((city: FavoriteCity) => city.adcode === adcode);
+    },
+    async addToFavorites() {
+      // 从 store 获取当前城市信息
+      const adcode = this.$store.getters['City/adcode'];
+      const cityName = this.$store.getters['City/name'];
 
-      try {
-        // Fetch city name
-        const weatherInfo = await getWeather(adcode, 'base');
-        if (weatherInfo.lives && weatherInfo.lives.length > 0) {
-          const cityName = weatherInfo.lives[0].city;
-          favorites.push({
-            adcode: adcode,
-            name: cityName,
-          });
-          localStorage.setItem('favoriteCities', JSON.stringify(favorites));
-          // Force update if needed, or rely on reactivity in Home
-        }
-      } catch (e) {
-        console.error('Failed to add favorite', e);
-      }
+      const favorites = storage.get<FavoriteCity[]>('favoriteCities', []);
+      if (this.isCityInFavorites(adcode, favorites)) return;
+
+      favorites.unshift({
+        adcode: adcode,
+        name: cityName,
+      });
+      storage.set('favoriteCities', favorites);
+      this.updateShowAddButton(adcode, favorites);
     },
   },
 };
@@ -140,56 +144,13 @@ export default {
   width: 100%;
 }
 
-.home-btn {
-  cursor: pointer;
-}
-
 .add-btn {
   margin-left: auto;
-  cursor: pointer;
   transition: transform 0.2s;
   color: var(--text-color);
 
   &:hover {
     transform: scale(1.1);
-  }
-}
-
-.limit-alert {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 100;
-
-  .alert-content {
-    background: var(--secondary-color);
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-
-    p {
-      margin-bottom: 15px;
-    }
-
-    button {
-      padding: 5px 15px;
-      background: var(--primary-color);
-      border: none;
-      color: white;
-      border-radius: 4px;
-      cursor: pointer;
-
-      &:hover {
-        opacity: 0.9;
-      }
-    }
   }
 }
 </style>

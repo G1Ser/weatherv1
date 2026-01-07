@@ -6,14 +6,12 @@ export interface IpLocationResponseType {
   regionName: string;
 }
 
-export type GeocodeLevelType = '省' | '市' | '区县';
-
 export interface GeocodeType {
   province: string;
   city: string;
   district: string;
   adcode: string;
-  level: GeocodeLevelType;
+  formatted_address: string;
 }
 
 export interface GeocodeResponseType {
@@ -26,6 +24,8 @@ export interface WeatherLivesType {
   winddirection: string;
   windpower: string;
   humidity: string;
+  adcode: string;
+  city: string;
 }
 export interface WeatherCastsType {
   date: string;

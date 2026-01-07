@@ -3,8 +3,11 @@ dist
 node_modules
 public
 .babelrc
-.env*
+.env
+.env.*
+/types/
 .eslintrc.js
 .prettierrc.js
+.lintstagedrc.json
 *.config.js
 *.min.js

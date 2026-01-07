@@ -27,7 +27,7 @@ module.exports = (env, argv) => {
       publicPath: '/',
     },
     resolve: {
-      extensions: ['.ts', '.js', '.vue', '.json'],
+      extensions: ['.ts', '.tsx', '.js', '.vue', '.json'],
       alias: {
         '@': path.resolve(__dirname, 'src'),
       },
@@ -37,6 +37,15 @@ module.exports = (env, argv) => {
         {
           test: /\.vue$/,
           loader: 'vue-loader',
+        },
+        {
+          test: /\.tsx$/,
+          exclude: /node_modules/,
+          use: [
+            {
+              loader: 'babel-loader',
+            },
+          ],
         },
         {
           test: /\.ts$/,

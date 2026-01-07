@@ -1,5 +1,5 @@
 import { getGeocode, getWeather } from '@/api/gmap';
-import { getWeatherIcon } from '@/utils/weather-icon';
+import getWeatherIcon from '@/utils/weather-icon';
 import type { WeatherCastsType } from '@/types/gmap';
 
 const getLocationGeocode = async (location: string) => {

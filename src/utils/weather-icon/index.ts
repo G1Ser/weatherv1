@@ -42,7 +42,7 @@ const weatherCategories: Record<string, string[]> = {
  * @param weather 天气现象名称
  * @returns 对应的图标名称，未找到则返回 'unknown'
  */
-export function getWeatherIcon(weather: string): string {
+export default function getWeatherIcon(weather: string): string {
   for (const [icon, weathers] of Object.entries(weatherCategories)) {
     if (weathers.includes(weather)) {
       return icon;

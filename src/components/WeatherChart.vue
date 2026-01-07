@@ -62,16 +62,17 @@ export default {
   data() {
     return {
       chartInstance: null as ECharts | null,
-      handleResize: null as any,
+      handleResize: null as (() => void) | null,
     };
   },
   watch: {
-    isLoading(newVal) {
-      if (!newVal) {
+    casts: {
+      handler() {
         this.$nextTick(() => {
           this.initChart();
         });
-      }
+      },
+      deep: true,
     },
   },
   created() {
@@ -80,10 +81,14 @@ export default {
     }, 300);
   },
   mounted() {
-    window.addEventListener('resize', this.handleResize);
+    if (this.handleResize) {
+      window.addEventListener('resize', this.handleResize);
+    }
   },
   beforeUnmount() {
-    window.removeEventListener('resize', this.handleResize);
+    if (this.handleResize) {
+      window.removeEventListener('resize', this.handleResize);
+    }
     if (this.chartInstance) {
       this.chartInstance.dispose();
     }
@@ -91,7 +96,9 @@ export default {
   methods: {
     initChart() {
       if (this.$refs.chartRef) {
-        this.chartInstance = init(this.$refs.chartRef as HTMLElement);
+        if (!this.chartInstance) {
+          this.chartInstance = init(this.$refs.chartRef as HTMLElement);
+        }
         this.renderChart();
       }
     },

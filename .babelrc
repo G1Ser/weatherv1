@@ -9,6 +9,8 @@
           "browsers": ["> 1%", "last 2 versions", "not dead"]
         }
       }
-    ]
+    ],
+    "@babel/preset-typescript",
+    "@vue/babel-preset-jsx"
   ]
 }

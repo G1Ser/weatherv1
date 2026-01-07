@@ -11,7 +11,7 @@
             class="popper-item"
             @click="goToCity(result.adcode)"
           >
-            {{ getCityName(result) }}
+            {{ result.formatted_address }}
           </div>
           <div v-if="!searchResults.length" class="popper-item">找不到该地区</div>
         </template>
@@ -38,7 +38,9 @@ import { mapGetters } from 'vuex';
 import { debounce } from 'lodash-es';
 import WeatherChart from '@/components/WeatherChart.vue';
 import { formatWeatherCasts } from '@/utils/gmap';
+import storage from '@/utils/localstorage';
 import type { WeatherChartDataType, GeocodeType } from '@/types/gmap';
+import type { FavoriteCity } from '@/types/storage';
 import { getWeather, getGeocode } from '@/api/gmap';
 
 export default {
@@ -48,20 +50,14 @@ export default {
   },
   data() {
     return {
-      nameFieldMap: Object.freeze({
-        省: 'province',
-        市: 'city',
-        区: 'district',
-        县: 'district',
-      }),
       casts: [] as WeatherChartDataType[],
-      isLoading: true,
+      isLoading: false,
       searchAddress: '',
       searchResults: [] as GeocodeType[],
       isSearching: false,
       showPopper: false,
       debouncedSearch: null as (() => void) | null,
-      favoriteCities: [] as { adcode: string; name: string }[],
+      favoriteCities: [] as FavoriteCity[],
     };
   },
   computed: {
@@ -107,30 +103,20 @@ export default {
       this.isLoading = true;
       try {
         const weatherInfo = await getWeather(geocode, 'all');
-        if (weatherInfo.forecasts && weatherInfo.forecasts.length > 0) {
-          this.casts = formatWeatherCasts(weatherInfo.forecasts[0].casts);
-        }
+        this.casts = formatWeatherCasts(weatherInfo.forecasts[0].casts);
       } finally {
         this.isLoading = false;
       }
-    },
-    getCityName(result: GeocodeType) {
-      const keys = Object.keys(this.nameFieldMap);
-      if (keys.includes(result.level)) {
-        const level = result.level as keyof typeof this.nameFieldMap;
-        return result[this.nameFieldMap[level]];
-      }
-      return '找不到该地区';
     },
     goToCity(adcode: string) {
       this.$router.push({ name: 'City', params: { adcode } });
     },
     loadFavorites() {
-      this.favoriteCities = JSON.parse(localStorage.getItem('favoriteCities') || '[]');
+      this.favoriteCities = storage.get<FavoriteCity[]>('favoriteCities', []);
     },
     deleteFavorite(adcode: string) {
       this.favoriteCities = this.favoriteCities.filter(city => city.adcode !== adcode);
-      localStorage.setItem('favoriteCities', JSON.stringify(this.favoriteCities));
+      storage.set<FavoriteCity[]>('favoriteCities', this.favoriteCities);
     },
   },
 };
@@ -200,7 +186,7 @@ export default {
 }
 
 .weather-info {
-  & > p {
+  p {
     font-size: 20px;
     margin-bottom: 10px;
   }

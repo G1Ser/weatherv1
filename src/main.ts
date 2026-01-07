@@ -3,7 +3,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import './main.scss';
-import { getGitInfo } from './utils/git';
+import getGitInfo from './utils/git';
 
 if (process.env.NODE_ENV === 'production') {
   getGitInfo();

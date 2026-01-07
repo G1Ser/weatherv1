@@ -10,7 +10,10 @@ const commonStyle = `
   letter-spacing: 1px;
 `;
 
-export const getGitInfo = () => {
+/**
+ * @description 打包的时候自动注入git的版本号 构建分支/时间
+ */
+const getGitInfo = () => {
   const version = __GIT_VERSION__;
   const branch = __GIT_BRANCH__;
   const buildTime = formatTime(__BUILD_TIME__);
@@ -20,3 +23,5 @@ export const getGitInfo = () => {
     commonStyle + 'line-height: 1.5;'
   );
 };
+
+export default getGitInfo;
