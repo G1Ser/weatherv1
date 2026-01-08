@@ -32,6 +32,7 @@ import type { WeatherLivesType } from '@/types/gmap';
 import type { FavoriteCity } from '@/types/storage';
 import { getWeather } from '@/api/gmap';
 import storage from '@/utils/localstorage';
+import Toast from '@/utils/toast';
 
 export default {
   name: 'AppHeader',
@@ -117,6 +118,7 @@ export default {
       });
       storage.set('favoriteCities', favorites);
       this.updateShowAddButton(adcode, favorites);
+      Toast.success('收藏成功');
     },
   },
 };
