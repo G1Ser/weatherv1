@@ -1,14 +1,9 @@
+import commonStyle from '@/constant/console-style';
+
 const formatTime = (timeStr: string) => {
   const date = new Date(timeStr);
   return date.toLocaleString('zh-CN', { hour12: false }).replace(/\//g, '-');
 };
-
-const commonStyle = `
-  color: #f5f7f9;
-  font-family: "Times New Roman", "楷体"; 
-  font-size: 15px;
-  letter-spacing: 1px;
-`;
 
 /**
  * @description 打包的时候自动注入git的版本号 构建分支/时间

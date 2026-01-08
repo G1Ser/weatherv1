@@ -1,27 +1,21 @@
-const fs = require('fs');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { VueLoaderPlugin } = require('vue-loader');
-const Dotenv = require('dotenv-webpack');
-// 移除所有的注解、console和debugger语句
-const TerserPlugin = require('terser-webpack-plugin');
-// 获取Git版本信息
-const { GitRevisionPlugin } = require('git-revision-webpack-plugin');
-// 注册全局变量
-const { DefinePlugin } = require('webpack');
-// 打包分析
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-// 打包进度条
-const WebpackBar = require('webpackbar');
-const { codeInspectorPlugin } = require('code-inspector-plugin');
+// webpack module配置
+const getModule = require('./webpack/module.config');
+// webpack pulgins配置
+const getPlugins = require('./webpack/plugin.config');
+// webpack optimization配置
+const getOptimization = require('./webpack/optimization.config');
+// webpack devServer设置
+const getDevServer = require('./webpack/server.config');
+// webpack performance设置
+const getPerformance = require('./webpack/performance.config');
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
-  const isAnalyze = process.env.ANALYZE === 'true';
-  const isProfile = process.env.PROFILE === 'true';
+  const isAnalyze = env.analyze === true;
+  const isProfile = env.profile === true;
+  const isGzip = env.gzip === true;
   const envFile = isProduction ? '.env.production' : '.env.development';
-  const gitRevisionPlugin = new GitRevisionPlugin({ lightweightTags: true, branch: true });
   const config = {
     mode: isProduction ? 'production' : 'development',
     entry: './src/main.ts',
@@ -38,160 +32,12 @@ module.exports = (env, argv) => {
         '@': path.resolve(__dirname, 'src'),
       },
     },
-    module: {
-      rules: [
-        {
-          test: /\.vue$/,
-          loader: 'vue-loader',
-        },
-        {
-          test: /\.tsx$/,
-          exclude: /node_modules/,
-          use: [
-            {
-              loader: 'babel-loader',
-            },
-          ],
-        },
-        {
-          test: /\.ts$/,
-          loader: 'ts-loader',
-          exclude: /node_modules/,
-          options: {
-            appendTsSuffixTo: [/\.vue$/],
-            transpileOnly: true,
-          },
-        },
-        {
-          test: /\.scss$/,
-          use: [
-            isProduction ? MiniCssExtractPlugin.loader : 'vue-style-loader',
-            'css-loader',
-            {
-              loader: 'sass-loader',
-              options: {
-                additionalData: `@use "@/assets/styles/base.scss";`,
-                sassOptions: {
-                  silenceDeprecations: ['import', 'legacy-js-api'],
-                },
-              },
-            },
-          ],
-        },
-        {
-          test: /\.css$/,
-          use: [isProduction ? MiniCssExtractPlugin.loader : 'vue-style-loader', 'css-loader'],
-        },
-        {
-          test: /\.svg$/,
-          use: ['vue-svg-loader'],
-        },
-        {
-          test: /\.(png|jpe?g|gif|webp|ico)$/i,
-          type: 'asset',
-          generator: {
-            filename: 'images/[name]-[hash:8][ext]',
-          },
-        },
-        {
-          test: /\.(woff2?|eot|ttf|otf)$/i,
-          type: 'asset/resource',
-          generator: {
-            filename: 'fonts/[name]-[hash:8][ext]',
-          },
-        },
-      ],
-    },
-    plugins: [
-      new WebpackBar({
-        name: isProduction ? '🚀 生产构建' : '⚡ 开发模式',
-        color: isProduction ? '#52c41a' : '#1890ff',
-        profile: isProfile, // 打包速度分析
-      }),
-      new VueLoaderPlugin(),
-      new Dotenv({
-        path: fs.existsSync(path.resolve(__dirname, envFile))
-          ? path.resolve(__dirname, envFile)
-          : path.resolve(__dirname, '.env'),
-        systemvars: true,
-      }),
-      new HtmlWebpackPlugin({
-        template: './index.html',
-        title: '天气预报',
-        favicon: path.resolve(__dirname, 'public', 'favicon.ico'),
-      }),
-      new DefinePlugin({
-        __GIT_VERSION__: JSON.stringify(gitRevisionPlugin.version()),
-        __GIT_BRANCH__: JSON.stringify(gitRevisionPlugin.branch()),
-        __BUILD_TIME__: JSON.stringify(new Date().toISOString()),
-      }),
-      codeInspectorPlugin({ bundler: 'webpack' }),
-      ...(isProduction
-        ? [
-            new MiniCssExtractPlugin({
-              filename: 'css/[name]-[contenthash:8].css',
-            }),
-          ]
-        : []),
-      // 打包分析
-      ...(isAnalyze
-        ? [
-            new BundleAnalyzerPlugin({
-              analyzerMode: 'server',
-              analyzerPort: 8888,
-              openAnalyzer: true,
-              generateStatsFile: true,
-              statsFilename: 'stats.json',
-            }),
-          ]
-        : []),
-    ],
-    optimization: {
-      minimize: isProduction,
-      minimizer: [
-        new TerserPlugin({
-          extractComments: false,
-          terserOptions: {
-            format: {
-              comments: false, //删除所有注解
-            },
-            compress: {
-              drop_debugger: true, //移除所有debugger语句
-              pure_funcs: ['console.log'], // 移除console.log语句
-            },
-          },
-        }),
-      ],
-      splitChunks: {
-        cacheGroups: {
-          'vue-vendor': {
-            test: /[\\/]node_modules[\\/](vue|vue-router|vuex)[\\/]/,
-            name: 'vue-vendor',
-            chunks: 'all',
-            priority: 10,
-          },
-          'echarts-vendor': {
-            test: /[\\/]node_modules[\\/]echarts[\\/]/,
-            name: 'echarts-vendor',
-            chunks: 'all',
-            priority: 9,
-          },
-          'utils-vendor': {
-            test: /[\\/]node_modules[\\/](axios|lodash-es)[\\/]/,
-            name: 'utils-vendor',
-            chunks: 'all',
-            priority: 8,
-          },
-        },
-      },
-    },
-    devServer: {
-      port: 3000,
-      open: true,
-      hot: true,
-      historyApiFallback: true,
-    },
-    devtool: isProduction ? false : 'eval-source-map',
+    module: getModule(isProduction),
+    plugins: getPlugins({ isProduction, isAnalyze, isProfile, isGzip, envFile }),
+    optimization: getOptimization(isProduction),
+    devServer: getDevServer(),
+    devtool: isProduction ? false : 'eval-source-map', // 开启sourcemap
+    performance: getPerformance(isProduction),
   };
 
   return config;

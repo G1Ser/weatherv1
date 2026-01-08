@@ -9,5 +9,6 @@ public
 .eslintrc.js
 .prettierrc.js
 .lintstagedrc.json
+/webpack/
 *.config.js
 *.min.js

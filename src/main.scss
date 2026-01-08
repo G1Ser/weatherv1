@@ -2,12 +2,12 @@
 
 @font-face {
   font-family: 'Consolas';
-  src: url('@/assets/fonts/consolas.ttf');
+  src: url('@/assets/fonts/consolas.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'LXGW';
-  src: url('@/assets/fonts/lxgwscreen.ttf');
+  src: url('@/assets/fonts/lxgwscreen.woff2') format('woff2');
 }
 
 * {
