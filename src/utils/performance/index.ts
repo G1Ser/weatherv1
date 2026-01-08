@@ -14,15 +14,15 @@ class PerformanceUtils {
   private monitorWebVitals() {
     // LCP - 最大内容绘制（主要内容加载完成 = 首屏加载）
     onLCP((metric: Metric) => {
-      console.info('%c首屏加载完成 (LCP):', this.formatTime(metric.value), commonStyle);
+      console.info('%c首屏加载完成 (LCP):' + this.formatTime(metric.value), commonStyle);
     });
     // FCP - 首次内容绘制（用户第一次看到内容）
     onFCP((metric: Metric) => {
-      console.info('%c首次内容绘制 (FCP):', this.formatTime(metric.value), commonStyle);
+      console.info('%c首次内容绘制 (FCP):' + this.formatTime(metric.value), commonStyle);
     });
     // TTFB - 服务器响应时间（第一个指标）
     onTTFB((metric: Metric) => {
-      console.info('%c服务器响应 (TTFB):', this.formatTime(metric.value), commonStyle);
+      console.info('%c服务器响应 (TTFB):' + this.formatTime(metric.value), commonStyle);
     });
   }
   /**
