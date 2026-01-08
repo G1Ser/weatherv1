@@ -957,4 +957,4 @@
 
 
 
-:root{--primary-color: #186489;--secondary-color: #124c70;--text-color: #f5f7f9}@font-face{font-family:"Consolas";src:url(/fonts/consolas-8480b7e4.ttf)}@font-face{font-family:"LXGW";src:url(/fonts/lxgwscreen-f0e46f22.ttf)}*{margin:0;padding:0;box-sizing:border-box;font-family:"Consolas","LXGW"}*::-webkit-scrollbar{display:none}html,body{width:100vw}.cursor-pointer{cursor:pointer}
+:root{--primary-color: #186489;--secondary-color: #124c70;--text-color: #f5f7f9}@font-face{font-family:"Consolas";src:url(/fonts/consolas-d6337fc9.woff2) format("woff2")}@font-face{font-family:"LXGW";src:url(/fonts/lxgwscreen-35fde1d4.woff2) format("woff2")}*{margin:0;padding:0;box-sizing:border-box;font-family:"Consolas","LXGW"}*::-webkit-scrollbar{display:none}html,body{width:100vw}.cursor-pointer{cursor:pointer}
