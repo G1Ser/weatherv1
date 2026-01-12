@@ -1,6 +1,6 @@
 .toast-container {
   position: fixed;
-  top: 10px;
+  top: 30px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 999;
@@ -24,6 +24,16 @@
   color: var(--text-color);
 }
 
+// 进入动画
+.toast-enter-active {
+  animation: toast-in 0.5s ease-out;
+}
+
+// 离开动画
+.toast-leave-active {
+  animation: toast-out 0.3s ease-in;
+}
+
 @keyframes toast-in {
   from {
     top: 10px;
@@ -37,19 +47,9 @@
 
 @keyframes toast-out {
   from {
-    top: 30px;
     opacity: 1;
   }
   to {
-    top: 30px;
     opacity: 0;
   }
-}
-
-.toast-enter-active {
-  animation: toast-in 0.3s ease-out;
-}
-
-.toast-leave-active {
-  animation: toast-out 0.3s ease-in;
 }

@@ -8,7 +8,7 @@
           <div
             v-for="result in searchResults"
             :key="result.adcode"
-            class="popper-item"
+            class="popper-item cursor-pointer"
             @click="goToCity(result.adcode)"
           >
             {{ result.formatted_address }}
@@ -173,7 +173,6 @@ export default {
 
 .popper-item {
   padding: 12px 15px;
-  cursor: pointer;
   transition: background-color 0.2s;
 
   &:hover {

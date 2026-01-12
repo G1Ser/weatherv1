@@ -53,15 +53,12 @@ export default {
     async fetchCityData() {
       this.isLoading = true;
       try {
-        getWeather(this.adcode, 'base').then(res => {
-          this.lives = res.lives[0];
-          // 存入当前城市信息
-          this.$store.commit('City/SET_ADCODE', this.lives.adcode);
-          this.$store.commit('City/SET_CITYNAME', this.lives.city);
-        });
-        getWeather(this.adcode, 'all').then(res => {
-          this.casts = formatWeatherCasts(res.forecasts[0].casts);
-        });
+        const [baseRes, allRes] = await Promise.all([getWeather(this.adcode, 'base'), getWeather(this.adcode, 'all')]);
+        this.lives = baseRes.lives[0];
+        // 存入当前城市信息
+        this.$store.commit('City/SET_ADCODE', this.lives.adcode);
+        this.$store.commit('City/SET_CITYNAME', this.lives.city);
+        this.casts = formatWeatherCasts(allRes.forecasts[0].casts);
       } finally {
         this.isLoading = false;
       }
