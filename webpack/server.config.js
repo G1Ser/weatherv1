@@ -7,4 +7,7 @@ module.exports = () => ({
   open: true, //自动打开
   hot: true, //热更新
   compress: true, //gzip压缩
+  client: {
+    overlay: false, // 关闭错误覆盖层
+  },
 });

@@ -69,11 +69,12 @@ export default {
         }
       },
     },
-    '$route.name': {
+    $route: {
       immediate: true,
-      handler(routeName) {
-        if (routeName === 'City') {
-          const adcode = this.$store.getters['City/adcode'];
+      handler(route) {
+        const { name, params } = route;
+        if (name === 'City') {
+          const adcode = params.adcode;
           const favorites = storage.get<FavoriteCity[]>('favoriteCities', []);
           this.updateShowAddButton(adcode, favorites);
         } else {
@@ -137,6 +138,7 @@ export default {
     0 4px 6px -4px rgb(0 0 0 / 0.1);
   font-size: 16px;
   color: var(--text-color);
+  background-color: var(--primary-color);
 }
 
 .skeleton-header {

@@ -32,13 +32,17 @@ export default {
   background-color: var(--primary-color);
 }
 header {
+  position: fixed;
+  left: 0;
+  top: 0;
   width: 100%;
   height: 80px;
   flex-shrink: 0;
+  z-index: 2;
 }
 .router-container {
   width: 100%;
-  flex: 1;
-  padding: 0 min(15vw, 200px) 10px min(15vw, 200px);
+  height: 100%;
+  padding: 80px min(15vw, 200px) 10px min(15vw, 200px);
 }
 </style>
