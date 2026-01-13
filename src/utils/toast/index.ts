@@ -4,7 +4,7 @@ import './toast.scss';
 
 interface ToastProps {
   message: string;
-  type: 'success' | 'error';
+  type: 'success' | 'error' | 'info';
   duration?: number;
 }
 
@@ -34,6 +34,9 @@ const createToast = (options: ToastProps) => {
 const Toast = {
   success(message: string, duration = 2000) {
     createToast({ message, type: 'success', duration });
+  },
+  info(message: string, duration = 2000) {
+    createToast({ message, type: 'info', duration });
   },
   error(message: string, duration = 2000) {
     createToast({ message, type: 'error', duration });

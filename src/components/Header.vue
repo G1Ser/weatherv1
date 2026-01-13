@@ -115,6 +115,10 @@ export default {
       const cityName = this.$store.getters['City/name'];
 
       const favorites = storage.get<FavoriteCity[]>('favoriteCities', []);
+      if (favorites.length >= 10) {
+        Toast.info('收藏夹已达到上线');
+        return;
+      }
       if (this.isCityInFavorites(adcode, favorites)) return;
 
       favorites.unshift({
@@ -159,6 +163,14 @@ export default {
 
   &:hover {
     transform: scale(1.1);
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    gap: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 </style>

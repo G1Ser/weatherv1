@@ -14,7 +14,7 @@ const ToastComponent = Vue.extend({
       required: true,
     },
     type: {
-      type: String as () => 'success' | 'error',
+      type: String as () => 'success' | 'error' | 'info',
       required: true,
     },
     duration: {

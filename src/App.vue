@@ -45,4 +45,11 @@ header {
   height: 100%;
   padding: 80px min(15vw, 200px) 10px min(15vw, 200px);
 }
+
+@media (max-width: 768px) {
+  .router-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
 </style>
