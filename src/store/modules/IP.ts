@@ -15,7 +15,7 @@ interface RootState {
 
 // State
 const state: IPState = {
-  localLocation: process.env.VUE_APP_LOCAL_LOCATION || '北京',
+  localLocation: process.env.VUE_APP_LOCAL_LOCATION || '北京市',
   localGeocode: '',
 };
 

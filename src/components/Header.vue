@@ -93,6 +93,10 @@ export default {
      * 更新添加按钮的显示状态
      */
     updateShowAddButton(adcode: string, favoriteCities: FavoriteCity[]) {
+      if (adcode === this.localGeocode) {
+        this.showAddButton = false;
+        return;
+      }
       if (favoriteCities.length === 0) {
         this.showAddButton = true;
         return;

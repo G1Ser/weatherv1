@@ -34,7 +34,7 @@ jobs:
         run: pnpm build
         env:
           VUE_APP_AMAP_API: https://wt-prod-k8m3.chauncey.work
-          VUE_APP_LOCAL_LOCATION: 北京
+          VUE_APP_LOCAL_LOCATION: 北京市
 
       - name: 部署到 GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
