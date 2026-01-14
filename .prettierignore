@@ -1,4 +1,6 @@
 .github
 dist
+list
+coverage
 public
 node_modules

@@ -1,5 +1,7 @@
 .github
 dist
+list
+coverage
 node_modules
 public
 .babelrc
@@ -9,7 +11,7 @@ public
 /tests/
 .eslintrc.js
 .prettierrc.js
-.jest.config.js
+ jest.config.js
 .lintstagedrc.json
 /webpack/
 *.config.js

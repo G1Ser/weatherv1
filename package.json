@@ -1,6 +1,8 @@
 {
   "name": "weatherv1",
   "version": "1.0.0",
+  "description": "天气预报 Web 应用(Vue2 + Ts + Webpack)",
+  "license": "MIT",
   "scripts": {
     "dev": "webpack serve --mode development",
     "build": "webpack --mode production",
@@ -73,5 +75,9 @@
     "vue-router": "^3.6.5",
     "vuex": "^3.6.2",
     "web-vitals": "^5.1.0"
+  },
+  "packageManager": "pnpm@10.0.0",
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

@@ -1,7 +1,7 @@
 module.exports = {
   // 测试ts代码
   preset: 'ts-jest',
-  // 浏览器环境
+  // node环境
   testEnvironment: 'node',
   // 别名
   moduleNameMapper: {
