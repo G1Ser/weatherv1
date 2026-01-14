@@ -27,6 +27,13 @@ pnpm format:check     # Check code formatting
 pnpm type-check       # TypeScript type checking (no emit)
 ```
 
+### Testing
+```bash
+pnpm test             # Run all tests
+pnpm test:watch       # Run tests in watch mode
+pnpm test:coverage    # Run tests with coverage report
+```
+
 ### Git Hooks
 - **Pre-commit**: Runs `lint-staged` which formats and lints staged files
 - **Commit message**: Uses commitlint with conventional commits format
@@ -81,6 +88,43 @@ Webpack configuration is split across `webpack/` directory:
 - `performance.config.js` - Bundle size hints
 
 The main `webpack.config.js` orchestrates these based on environment flags.
+
+### Testing Architecture
+Tests are located in `tests/` directory using Jest with ts-jest:
+- **Test files**: `tests/*.test.ts` - Unit tests for utility functions
+- **Mocks**: `tests/__mocks__/` - Manual mocks for API modules
+
+Current test coverage focuses on utility functions:
+- `weather-icon.test.ts` - Tests weather condition to icon mapping
+- `format-weather-casts.test.ts` - Tests weather data formatting with time-based logic
+
+Jest configuration (`jest.config.js`):
+- Uses `ts-jest` preset for TypeScript support
+- Module aliases mapped (`@/` → `src/`)
+- API mocks auto-loaded via `moduleNameMapper`
+- Coverage collected from `src/utils/**/*.ts`
+
+### Writing Tests
+```typescript
+// Basic test structure
+import { someFunction } from '@/utils/module';
+
+describe('someFunction', () => {
+  it('should do something', () => {
+    expect(someFunction(input)).toBe(expected);
+  });
+});
+
+// Mocking time-dependent functions
+beforeEach(() => {
+  jest.restoreAllMocks();
+});
+
+it('should handle daytime', () => {
+  jest.spyOn(Date.prototype, 'getHours').mockReturnValue(10);
+  // test daytime behavior
+});
+```
 
 ## Code Style Guidelines
 

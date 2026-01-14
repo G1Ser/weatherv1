@@ -12,6 +12,7 @@
 - ECharts (图表可视化)
 - Axios (HTTP 请求)
 - Lodash-es (工具库)
+- Jest + ts-jest (单元测试)
 
 ## 项目规范
 
@@ -61,6 +62,10 @@ src/
 │   ├── toast/        # 消息提示
 │   └── weather-icon/ # 天气图标
 └── views/           # 页面视图
+
+tests/
+├── __mocks__/       # API Mock 文件
+└── *.test.ts        # 单元测试文件
 ```
 
 ## 开发指南
@@ -95,4 +100,12 @@ pnpm lint:fix         # 自动修复 ESLint 问题
 pnpm format           # 格式化代码
 pnpm format:check     # 检查代码格式
 pnpm type-check       # TypeScript 类型检查
+```
+
+### 单元测试
+
+```bash
+pnpm test             # 运行所有测试
+pnpm test:watch       # 监听模式运行测试
+pnpm test:coverage    # 运行测试并生成覆盖率报告
 ```
