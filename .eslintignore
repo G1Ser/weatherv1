@@ -6,8 +6,10 @@ public
 .env
 .env.*
 /types/
+/tests/
 .eslintrc.js
 .prettierrc.js
+.jest.config.js
 .lintstagedrc.json
 /webpack/
 *.config.js

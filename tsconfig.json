@@ -33,6 +33,6 @@
   },
 
   /* 包含和排除的文件 */
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "types/**/*.d.ts"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "types/**/*.d.ts", "tests/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }
