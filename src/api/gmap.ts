@@ -17,7 +17,7 @@ export const getIpLocation = () => {
  */
 export const getGeocode = (address: string) => {
   return http<GeocodeResponseType>({
-    url: '/geocode/geo',
+    url: '/geocode',
     method: 'get',
     params: {
       address,
@@ -32,7 +32,7 @@ export const getGeocode = (address: string) => {
  */
 export const getWeather = (adcode: string, extensions: 'base' | 'all' = 'base') => {
   return http<WeatherResponseType>({
-    url: '/weather/weatherInfo',
+    url: '/weather',
     method: 'get',
     params: {
       city: adcode,
