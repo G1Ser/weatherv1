@@ -4,7 +4,47 @@
     xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200">
     <defs>
         <style>
-            @import url('../styles/svg-animation/home.css');
+            @keyframes sunRiseSet {
+                0% {
+                    transform: translateY(150px);
+                    opacity: 0;
+                }
+
+                25% {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+
+                75% {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+
+                100% {
+                    transform: translateY(150px);
+                    opacity: 0;
+                }
+            }
+
+            .sun-group--home {
+                animation: sunRiseSet 3s ease-in-out infinite;
+                transform-origin: center;
+            }
+
+            @keyframes rotate360 {
+                0% {
+                    transform: rotate(0deg);
+                }
+
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            .sun-rays--home {
+                animation: rotate360 6s linear infinite;
+                transform-origin: 628.363636px 395.636364px;
+            }
         </style>
     </defs>
 

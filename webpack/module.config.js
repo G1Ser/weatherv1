@@ -51,6 +51,12 @@ module.exports = isProduction => ({
     },
     {
       test: /\.svg$/,
+      resourceQuery: /raw/,
+      type: 'asset/source',
+    },
+    {
+      test: /\.svg$/,
+      resourceQuery: { not: [/raw/] },
       use: ['vue-svg-loader'],
     },
     {

@@ -1,5 +1,0 @@
-@import url('./base.css');
-
-.wind-line {
-  animation: moveRight 3s ease-in-out infinite;
-}

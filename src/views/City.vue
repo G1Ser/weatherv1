@@ -9,8 +9,8 @@
         </span>
       </template>
       <template v-else>
-        <SkeletonItem style="height: 45px; width: 100px" />
-        <SkeletonItem style="height: 25px; width: 185px" />
+        <g1-skeleton style="height: 45px; width: 100px" />
+        <g1-skeleton style="height: 25px; width: 185px" />
       </template>
     </header>
 
@@ -23,7 +23,6 @@
 
 <script lang="ts">
 import WeatherChart from '@/components/WeatherChart.vue';
-import SkeletonItem from '@/components/SkeletonItem.vue';
 import { formatWeatherCasts } from '@/utils/gmap';
 import type { WeatherChartDataType, WeatherLivesType } from '@/types/gmap';
 import { getWeather } from '@/api/gmap';
@@ -32,7 +31,6 @@ export default {
   name: 'City',
   components: {
     WeatherChart,
-    SkeletonItem,
   },
   data() {
     return {

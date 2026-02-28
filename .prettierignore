@@ -4,3 +4,4 @@ list
 coverage
 public
 node_modules
+src/lib

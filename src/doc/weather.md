@@ -4,7 +4,7 @@
 
 ---
 
-## 1. 晴朗天气<img src="../assets/svgs/sun.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
+## 1. 晴朗天气<img src="../../public/svgs/sun.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
 
 | 天气现象 |
 | -------- |
@@ -12,7 +12,7 @@
 | 少云     |
 | 热       |
 
-## 2. 多云天气<img src="../assets/svgs/cloudy.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
+## 2. 多云天气<img src="../../public/svgs/cloudy.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
 
 | 天气现象 |
 | -------- |
@@ -20,7 +20,7 @@
 | 多云     |
 | 阴       |
 
-## 3. 小雨天气<img src="../assets/svgs/light-rain.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
+## 3. 小雨天气<img src="../../public/svgs/light-rain.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
 
 | 天气现象    |
 | ----------- |
@@ -28,7 +28,7 @@
 | 毛毛雨/细雨 |
 | 小雨-中雨   |
 
-## 4. 中到大雨<img src="../assets/svgs/rain.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
+## 4. 中到大雨<img src="../../public/svgs/rain.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
 
 | 天气现象  |
 | --------- |
@@ -37,7 +37,7 @@
 | 雨        |
 | 中雨-大雨 |
 
-## 5. 暴雨天气<img src="../assets/svgs/heavy-rain.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
+## 5. 暴雨天气<img src="../../public/svgs/heavy-rain.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
 
 | 天气现象        |
 | --------------- |
@@ -49,14 +49,14 @@
 | 大暴雨-特大暴雨 |
 | 极端降雨        |
 
-## 6. 阵雨天气<img src="../assets/svgs/showers.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
+## 6. 阵雨天气<img src="../../public/svgs/showers.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
 
 | 天气现象 |
 | -------- |
 | 阵雨     |
 | 强阵雨   |
 
-## 7. 雷雨天气<img src="../assets/svgs/thunderstorm.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
+## 7. 雷雨天气<img src="../../public/svgs/thunderstorm.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
 
 | 天气现象         |
 | ---------------- |
@@ -64,7 +64,7 @@
 | 强雷阵雨         |
 | 雷阵雨并伴有冰雹 |
 
-## 8. 冻雨<img src="../assets/svgs/ice-rain.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
+## 8. 冻雨<img src="../../public/svgs/ice-rain.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
 
 | 天气现象 |
 | -------- |
@@ -73,7 +73,7 @@
 | 雨夹雪   |
 | 阵雨夹雪 |
 
-## 9. 小到中雪<img src="../assets/svgs/light-snow.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
+## 9. 小到中雪<img src="../../public/svgs/light-snow.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
 
 | 天气现象  |
 | --------- |
@@ -83,7 +83,7 @@
 | 中雪      |
 | 小雪-中雪 |
 
-## 10. 大雪/暴雪<img src="../assets/svgs/heavy-snow.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
+## 10. 大雪/暴雪<img src="../../public/svgs/heavy-snow.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
 
 | 天气现象  |
 | --------- |
@@ -92,21 +92,21 @@
 | 中雪-大雪 |
 | 大雪-暴雪 |
 
-## 11. 浮尘/扬沙<img src="../assets/svgs/ash.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
+## 11. 浮尘/扬沙<img src="../../public/svgs/ash.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
 
 | 天气现象 |
 | -------- |
 | 浮尘     |
 | 扬沙     |
 
-## 12. 沙尘暴<img src="../assets/svgs/dust.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
+## 12. 沙尘暴<img src="../../public/svgs/dust.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
 
 | 天气现象 |
 | -------- |
 | 沙尘暴   |
 | 强沙尘暴 |
 
-## 13. 雾霾天气<img src="../assets/svgs/fog.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
+## 13. 雾霾天气<img src="../../public/svgs/fog.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
 
 | 天气现象 |
 | -------- |
@@ -121,7 +121,7 @@
 | 重度霾   |
 | 严重霾   |
 
-## 14. 微风/和风<img src="../assets/svgs/breeze.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
+## 14. 微风/和风<img src="../../public/svgs/breeze.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
 
 | 天气现象 |
 | -------- |
@@ -131,7 +131,7 @@
 | 和风     |
 | 清风     |
 
-## 15. 强风<img src="../assets/svgs/strong-breeze.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
+## 15. 强风<img src="../../public/svgs/strong-breeze.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
 
 | 天气现象  |
 | --------- |
@@ -140,7 +140,7 @@
 | 大风      |
 | 烈风      |
 
-## 16. 风暴/台风<img src="../assets/svgs/typhoon.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
+## 16. 风暴/台风<img src="../../public/svgs/typhoon.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
 
 | 天气现象 |
 | -------- |
@@ -150,13 +150,13 @@
 | 热带风暴 |
 | 龙卷风   |
 
-## 17. 寒冷天气<img src="../assets/svgs/cold.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
+## 17. 寒冷天气<img src="../../public/svgs/cold.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
 
 | 天气现象 |
 | -------- |
 | 冷       |
 
-## 18. 未知/其他<img src="../assets/svgs/unknown.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
+## 18. 未知/其他<img src="../../public/svgs/unknown.svg" width="30" height="30" style="vertical-align: middle; transform: translate(4px,-4px);" />
 
 | 天气现象 |
 | -------- |

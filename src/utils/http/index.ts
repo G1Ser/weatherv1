@@ -1,6 +1,6 @@
 import axios, { type AxiosError } from 'axios';
 import type { AxiosRequestConfig } from 'axios';
-import Toast from '../toast';
+import { showToast } from '@/lib/g1-components.es';
 
 const axiosInstance = axios.create({
   baseURL: process.env.VUE_APP_AMAP_API,
@@ -13,7 +13,7 @@ axiosInstance.interceptors.request.use(
     return config;
   },
   error => {
-    Toast.error(error);
+    showToast(error, 'error');
     return Promise.reject(error);
   }
 );
@@ -26,7 +26,7 @@ axiosInstance.interceptors.response.use(
     if (status === 200) {
       return data;
     } else {
-      Toast.error('请求失败');
+      showToast('请求失败', 'error');
       return Promise.reject('请求失败');
     }
   },
@@ -34,15 +34,15 @@ axiosInstance.interceptors.response.use(
   (error: AxiosError) => {
     // 超时处理
     if (error.code === 'ECONNABORTED') {
-      Toast.error('网络波动，请稍后重试');
+      showToast('网络波动，请稍后重试', 'error');
     }
     // 网络错误
     else if (!error.response) {
-      Toast.error('网络连接失败');
+      showToast('网络连接失败', 'error');
     }
     // HTTP错误
     else {
-      Toast.error('请求失败');
+      showToast('请求失败', 'error');
     }
 
     return Promise.reject(error);

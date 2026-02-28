@@ -1,7 +1,7 @@
 <template>
   <div class="header-container">
-    <div class="cursor-pointer" @click="toHome">
-      <SvgIcon name="home" size="48px" />
+    <div class="cursor-pointer" title="首页" @click="toHome">
+      <g1-svg-icon :svg="homeIcon" size="48" />
     </div>
     <template v-if="!isLoading">
       <span>{{ localLocation }}</span>
@@ -12,36 +12,34 @@
     </template>
     <template v-else>
       <div class="skeleton-header">
-        <SkeletonItem style="height: 24px; width: 120px" />
-        <SkeletonItem style="height: 24px; width: 80px" />
-        <SkeletonItem style="height: 24px; width: 100px" />
-        <SkeletonItem style="height: 24px; width: 150px" />
-        <SkeletonItem style="height: 24px; width: 80px" />
+        <g1-skeleton style="height: 24px; width: 120px" />
+        <g1-skeleton style="height: 24px; width: 80px" />
+        <g1-skeleton style="height: 24px; width: 100px" />
+        <g1-skeleton style="height: 24px; width: 150px" />
+        <g1-skeleton style="height: 24px; width: 180px" />
       </div>
     </template>
     <div v-if="showAddButton" class="add-btn cursor-pointer" title="添加收藏" @click="addToFavorites">
-      <SvgIcon name="add" size="16px" />
+      <g1-svg-icon :svg="addIcon" size="16" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import SvgIcon from './SvgIcon.vue';
-import SkeletonItem from './SkeletonItem.vue';
+import addIcon from '@/assets/svgs/add.svg?raw';
+import homeIcon from '@/assets/svgs/home.svg?raw';
 import type { WeatherLivesType } from '@/types/gmap';
 import type { FavoriteCity } from '@/types/storage';
 import { getWeather } from '@/api/gmap';
 import storage from '@/utils/localstorage';
-import Toast from '@/utils/toast';
+import { showToast } from '@/lib/g1-components.es';
 
 export default {
   name: 'AppHeader',
-  components: {
-    SvgIcon,
-    SkeletonItem,
-  },
   data() {
     return {
+      addIcon,
+      homeIcon,
       lives: {} as WeatherLivesType,
       isLoading: true,
       showAddButton: false, // 是否显示添加收藏按钮
@@ -116,7 +114,7 @@ export default {
 
       const favorites = storage.get<FavoriteCity[]>('favoriteCities', []);
       if (favorites.length >= 10) {
-        Toast.info('收藏夹已达到上线');
+        showToast('收藏夹已达到上限');
         return;
       }
       if (this.isCityInFavorites(adcode, favorites)) return;
@@ -127,7 +125,7 @@ export default {
       });
       storage.set('favoriteCities', favorites);
       this.updateShowAddButton(adcode, favorites);
-      Toast.success('收藏成功');
+      showToast('收藏成功', 'success');
     },
   },
 };

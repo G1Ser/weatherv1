@@ -5,7 +5,7 @@
         <div v-for="cast in casts" :key="cast.date" class="header-item">
           <p>{{ cast.week }}</p>
           <p>{{ cast.date }}</p>
-          <SvgIcon :name="cast.icon" size="48px" />
+          <g1-svg-icon :name="cast.icon" size="48" />
           <p>{{ cast.weather }}</p>
         </div>
       </div>
@@ -15,14 +15,14 @@
       <div class="skeleton-chart">
         <div class="skeleton-header">
           <div v-for="i in 4" :key="i" class="skeleton-header-item">
-            <SkeletonItem style="height: 16px; width: 50px" />
-            <SkeletonItem style="height: 14px; width: 70px; margin-top: 8px" />
-            <SkeletonItem style="height: 48px; width: 48px; margin-top: 8px; border-radius: 50%" />
-            <SkeletonItem style="height: 16px; width: 60px; margin-top: 8px" />
+            <g1-skeleton style="height: 16px; width: 50px" />
+            <g1-skeleton style="height: 14px; width: 70px; margin-top: 8px" />
+            <g1-skeleton style="height: 48px; width: 48px; margin-top: 8px; border-radius: 50%" />
+            <g1-skeleton style="height: 16px; width: 60px; margin-top: 8px" />
           </div>
         </div>
         <div class="skeleton-body">
-          <SkeletonItem style="height: 100%; width: 100%" />
+          <g1-skeleton style="height: 100%; width: 100%" />
         </div>
       </div>
     </template>
@@ -37,18 +37,12 @@ import { LineChart } from 'echarts/charts';
 import { GridComponent } from 'echarts/components';
 import { CanvasRenderer } from 'echarts/renderers';
 import { debounce } from 'lodash-es';
-import SvgIcon from '@/components/SvgIcon.vue';
-import SkeletonItem from '@/components/SkeletonItem.vue';
 import type { WeatherChartDataType } from '@/types/gmap';
 
 use([LineChart, GridComponent, CanvasRenderer]);
 
 export default {
   name: 'WeatherChart',
-  components: {
-    SvgIcon,
-    SkeletonItem,
-  },
   props: {
     casts: {
       type: Array as PropType<WeatherChartDataType[]>,

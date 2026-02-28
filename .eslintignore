@@ -16,3 +16,4 @@ public
 /webpack/
 *.config.js
 *.min.js
+src/lib/**/*
