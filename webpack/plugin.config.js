@@ -20,6 +20,8 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 // 注册全局变量
 const { DefinePlugin } = require('webpack');
+// 复制静态资源
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 /**
  * @description 获取plugin配置
@@ -60,6 +62,14 @@ module.exports = options => {
       template: './index.html',
       title: '天气预报',
       favicon: path.resolve(__dirname, '..', 'public', 'favicon.ico'),
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, '..', 'public', 'svgs'),
+          to: 'svgs',
+        },
+      ],
     }),
     new DefinePlugin({
       __GIT_VERSION__: JSON.stringify(gitRevisionPlugin.version()),

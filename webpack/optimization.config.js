@@ -25,6 +25,13 @@ module.exports = isProduction => ({
   // 分包
   splitChunks: {
     cacheGroups: {
+      'g1-vendor': {
+        test: /[\\/]src[\\/]lib[\\/]/,
+        name: 'g1-vendor',
+        chunks: 'all',
+        priority: 11,
+        enforce: true,
+      },
       'vue-vendor': {
         test: /[\\/]node_modules[\\/](vue|vue-router|vuex)[\\/]/,
         name: 'vue-vendor',
