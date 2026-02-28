@@ -42,12 +42,20 @@ module.exports = options => {
       profile: isProfile, // 打包速度分析
     }),
     new VueLoaderPlugin(),
+    // 基础环境变量
     new Dotenv({
-      path: fs.existsSync(path.resolve(__dirname, '..', envFile))
-        ? path.resolve(__dirname, '..', envFile)
-        : path.resolve(__dirname, '..', '.env'),
+      path: path.resolve(__dirname, '..', '.env'),
       systemvars: true,
     }),
+    // 特殊环境变量
+    ...(fs.existsSync(path.resolve(__dirname, '..', envFile))
+      ? [
+          new Dotenv({
+            path: path.resolve(__dirname, '..', envFile),
+            systemvars: true,
+          }),
+        ]
+      : []),
     new HtmlWebpackPlugin({
       template: './index.html',
       title: '天气预报',
