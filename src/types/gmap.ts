@@ -1,21 +1,27 @@
 export interface IpLocationResponseType {
-  city: string;
-  country: string;
-  lat: string;
-  lon: string;
-  regionName: string;
+  location: {
+    city: string;
+    country_name: string;
+  };
+}
+
+export interface ADMItemType {
+  id: string;
+  name_zh: string;
+}
+
+export interface ADM2ItemType extends ADMItemType {
+  adcode: string;
 }
 
 export interface GeocodeType {
-  province: string;
-  city: string;
-  district: string;
-  adcode: string;
-  formatted_address: string;
+  adm0: ADMItemType;
+  adm1: ADMItemType;
+  adm2: ADM2ItemType;
 }
 
 export interface GeocodeResponseType {
-  geocodes: GeocodeType[];
+  results: GeocodeType[];
 }
 
 export interface WeatherLivesType {

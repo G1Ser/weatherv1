@@ -13,14 +13,14 @@ export const getIpLocation = () => {
 
 /**
  * @description 地理编码
- * @param address - 搜索地址名称，支持：省、市、区县、街道、门牌号、地名等
+ * @param keyword - 搜索地址名称
  */
-export const getGeocode = (address: string) => {
+export const getGeocode = (keyword: string) => {
   return http<GeocodeResponseType>({
-    url: '/amap/geocode',
+    url: '/geo/search',
     method: 'get',
     params: {
-      address,
+      keyword,
     },
   });
 };

@@ -4,7 +4,7 @@ import type { WeatherCastsType } from '@/types/gmap';
 
 const getLocationGeocode = async (location: string) => {
   const res = await getGeocode(location);
-  return res.geocodes[0].adcode;
+  return res.results[0].adm2.adcode;
 };
 
 const getLocationWeather = async (location: string, extensions: 'base' | 'all' = 'base') => {

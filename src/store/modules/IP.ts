@@ -15,7 +15,7 @@ interface RootState {
 
 // State
 const state: IPState = {
-  localLocation: process.env.VUE_APP_LOCAL_LOCATION || '北京市',
+  localLocation: process.env.VUE_APP_LOCAL_LOCATION,
   localGeocode: '',
 };
 
@@ -33,8 +33,9 @@ const mutations = {
 const actions = {
   async initLocation({ commit }: ActionContext<IPState, RootState>) {
     const res = await getIpLocation();
-    if (res.country !== '中国') return;
-    commit('SET_LOCAL_LOCATION', res.city);
+    const { location } = res;
+    if (location.country_name !== 'China') return;
+    commit('SET_LOCAL_LOCATION', location.city);
   },
   async initGeocode({ commit, state }: ActionContext<IPState, RootState>) {
     const geocode = await getLocationGeocode(state.localLocation);

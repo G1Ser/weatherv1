@@ -7,11 +7,11 @@
         <template v-else>
           <div
             v-for="result in searchResults"
-            :key="result.adcode"
+            :key="result.adm2.id"
             class="popper-item cursor-pointer"
-            @click="goToCity(result.adcode)"
+            @click="goToCity(result.adm2.adcode)"
           >
-            {{ result.formatted_address }}
+            {{ result.adm0.name_zh }}，{{ result.adm1.name_zh }}，{{ result.adm2.name_zh }}
           </div>
           <div v-if="!searchResults.length" class="popper-item">找不到该地区</div>
         </template>
@@ -91,7 +91,7 @@ export default {
       }
       try {
         const geocodeInfo = await getGeocode(this.searchAddress);
-        this.searchResults = geocodeInfo.geocodes || [];
+        this.searchResults = geocodeInfo.results;
       } finally {
         this.isSearching = false;
       }
