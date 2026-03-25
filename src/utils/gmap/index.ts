@@ -1,17 +1,5 @@
-import { getGeocode, getWeather } from '@/api/gmap';
 import getWeatherIcon from '@/utils/weather-icon';
 import type { WeatherCastsType } from '@/types/gmap';
-
-const getLocationGeocode = async (location: string) => {
-  const res = await getGeocode(location);
-  return res.results[0].adm2.adcode;
-};
-
-const getLocationWeather = async (location: string, extensions: 'base' | 'all' = 'base') => {
-  const adcode = await getLocationGeocode(location);
-  const res = await getWeather(adcode, extensions);
-  return res;
-};
 
 const formatWeatherCasts = (casts: WeatherCastsType[]) => {
   const time = new Date();
@@ -36,4 +24,4 @@ const formatWeatherCasts = (casts: WeatherCastsType[]) => {
   });
 };
 
-export { getLocationGeocode, getLocationWeather, formatWeatherCasts };
+export { formatWeatherCasts };

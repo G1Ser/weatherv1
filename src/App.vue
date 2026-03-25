@@ -18,7 +18,6 @@ export default {
   },
   async mounted() {
     await this.$store.dispatch('IP/initLocation');
-    await this.$store.dispatch('IP/initGeocode');
   },
 };
 </script>

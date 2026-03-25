@@ -17,7 +17,7 @@ export const getIpLocation = () => {
  */
 export const getGeocode = (keyword: string) => {
   return http<GeocodeResponseType>({
-    url: '/geo/search',
+    url: '/geo/adcode',
     method: 'get',
     params: {
       keyword,

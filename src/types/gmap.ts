@@ -1,23 +1,13 @@
 export interface IpLocationResponseType {
-  location: {
-    city: string;
-    country_name: string;
-  };
-}
-
-export interface ADMItemType {
-  id: string;
   name_zh: string;
-}
-
-export interface ADM2ItemType extends ADMItemType {
   adcode: string;
 }
 
 export interface GeocodeType {
-  adm0: ADMItemType;
-  adm1: ADMItemType;
-  adm2: ADM2ItemType;
+  id: number;
+  name_zh: string;
+  adcode: string;
+  display_zh: string;
 }
 
 export interface GeocodeResponseType {

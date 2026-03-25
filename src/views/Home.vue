@@ -7,11 +7,11 @@
         <template v-else>
           <div
             v-for="result in searchResults"
-            :key="result.adm2.id"
+            :key="result.id"
             class="popper-item cursor-pointer"
-            @click="goToCity(result.adm2.adcode)"
+            @click="goToCity(result.adcode)"
           >
-            {{ result.adm0.name_zh }}，{{ result.adm1.name_zh }}，{{ result.adm2.name_zh }}
+            {{ result.display_zh }}
           </div>
           <div v-if="!searchResults.length" class="popper-item">找不到该地区</div>
         </template>

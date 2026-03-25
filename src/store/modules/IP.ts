@@ -1,5 +1,4 @@
 import { getIpLocation } from '@/api/gmap';
-import { getLocationGeocode } from '@/utils/gmap';
 import type { Module, ActionContext } from 'vuex';
 
 // 定义 State 类型
@@ -15,7 +14,7 @@ interface RootState {
 
 // State
 const state: IPState = {
-  localLocation: process.env.VUE_APP_LOCAL_LOCATION,
+  localLocation: '',
   localGeocode: '',
 };
 
@@ -33,13 +32,8 @@ const mutations = {
 const actions = {
   async initLocation({ commit }: ActionContext<IPState, RootState>) {
     const res = await getIpLocation();
-    const { location } = res;
-    if (location.country_name !== 'China') return;
-    commit('SET_LOCAL_LOCATION', location.city);
-  },
-  async initGeocode({ commit, state }: ActionContext<IPState, RootState>) {
-    const geocode = await getLocationGeocode(state.localLocation);
-    commit('SET_LOCAL_GEOCODE', geocode);
+    commit('SET_LOCAL_LOCATION', res.name_zh);
+    commit('SET_LOCAL_GEOCODE', res.adcode);
   },
 };
 
