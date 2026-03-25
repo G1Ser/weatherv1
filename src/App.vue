@@ -1,5 +1,12 @@
 <template>
   <div class="app-container">
+    <g1-intro-scroll>
+      <div slot="header">标题</div>
+      <p>正文内容</p>
+      <div slot="footer">
+        <button id="btn-confirm">确 定</button>
+      </div>
+    </g1-intro-scroll>
     <header>
       <AppHeader />
     </header>

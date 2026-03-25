@@ -5,10 +5,9 @@ import store from './store';
 import './main.scss';
 import getGitInfo from './utils/git';
 import performanceMonitor from './utils/performance';
+import SharedUIPlugin from './plugins/shared-ui';
 
-// Configure global SVG base path
-import { configureSvgIcon } from './shared/svgIcon';
-configureSvgIcon({ basePath: '/svgs' });
+Vue.use(SharedUIPlugin);
 
 if (process.env.NODE_ENV === 'production') {
   getGitInfo();

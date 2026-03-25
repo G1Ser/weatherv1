@@ -30,6 +30,7 @@ module.exports = {
     'vue/no-v-html': 'warn', // v-html 警告
     'vue/require-default-prop': 'off', // 不强制 prop 默认值
     'vue/require-prop-types': 'warn', // prop 类型警告
+    'vue/no-deprecated-slot-attribute': 'off',
 
     // TypeScript 规则
     '@typescript-eslint/no-explicit-any': 'warn', // any 警告
