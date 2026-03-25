@@ -1,4 +1,4 @@
-import type { Skeleton, SvgIcon } from '@/lib/g1-components.es';
+import type { Skeleton, SvgIcon } from '@/shared';
 
 declare global {
   namespace JSX {

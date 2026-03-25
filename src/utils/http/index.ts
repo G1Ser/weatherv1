@@ -1,6 +1,6 @@
 import axios, { type AxiosError } from 'axios';
 import type { AxiosRequestConfig } from 'axios';
-import { showToast } from '@/lib/g1-components.es';
+import { showToast } from '@/shared/toast';
 
 const axiosInstance = axios.create({
   baseURL: process.env.VUE_APP_AMAP_API,

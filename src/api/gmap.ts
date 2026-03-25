@@ -4,10 +4,14 @@ import type { IpLocationResponseType, GeocodeResponseType, WeatherResponseType }
 /**
  * @description IP定位
  */
-export const getIpLocation = () => {
+export const getIpLocation = (lon?: number, lat?: number) => {
   return http<IpLocationResponseType>({
     url: '/ip',
     method: 'get',
+    params: {
+      lon,
+      lat,
+    },
   });
 };
 

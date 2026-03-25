@@ -32,7 +32,7 @@ import type { WeatherLivesType } from '@/types/gmap';
 import type { FavoriteCity } from '@/types/storage';
 import { getWeather } from '@/api/gmap';
 import storage from '@/utils/localstorage';
-import { showToast } from '@/lib/g1-components.es';
+import { showToast } from '@/shared/toast';
 
 export default {
   name: 'AppHeader',

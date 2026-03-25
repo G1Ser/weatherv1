@@ -1,4 +1,4 @@
 {
-  "src/!(lib)/**/*.{js,ts,tsx,vue}": ["prettier --write", "eslint --fix --max-warnings=0"],
+  "src/!(shared)/**/*.{js,ts,tsx,vue}": ["prettier --write", "eslint --fix --max-warnings=0"],
   "*.{json,css,scss}": ["prettier --write"]
 }

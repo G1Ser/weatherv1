@@ -5,11 +5,9 @@ import store from './store';
 import './main.scss';
 import getGitInfo from './utils/git';
 import performanceMonitor from './utils/performance';
-// lit组件库
-import './lib/g1-components.es';
-import { configureSvgIcon } from './lib/g1-components.es';
 
-// 设置svg全局路径
+// Configure global SVG base path
+import { configureSvgIcon } from './shared/svgIcon';
 configureSvgIcon({ basePath: '/svgs' });
 
 if (process.env.NODE_ENV === 'production') {
