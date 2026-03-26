@@ -1,6 +1,21 @@
-# 天气预报项目(已归档 2026/2/28)
+# 天气预报项目(已归档 2026/3/26)
 
 基于高德地图 API 的天气预报应用，支持城市搜索、天气查询和收藏夹功能。
+
+## 项目特点
+
+- **地理数据库**
+  基于IP定位结合自建地理数据库，提升城市识别的稳定性与可控性，减少对单一第三方服务的依赖
+- **PostGIS空间能力支持**
+  使用PostGIS扩展地理空间查询能力，实现更准确的区域匹配
+- **接口缓存**
+  通过Cloudflare构建缓存层，对天气查询接口进行缓存与复用，有效减少高德API调用 [后端源码](https://github.com/G1Ser/wt-prod-k8m3)
+- **跨平台组件化架构**
+  核心UI基于Lit构建，实现多端复用 [g1components使用](https://g1components.chauncey.work)
+- **工程化与代码质量**
+  引入Husky、Eslint、TypeScript与Jest，建立提交预检查、代码规范检查、类型检查和测试能力，提升项目开发效率与代码质量
+- **webpack工程化构建**
+  基于Webpack进行工程化管理，完成模块拆分、资源处理与打包分析，增强项目的可维护性与构建稳定性。
 
 ## 项目技术栈
 
@@ -41,6 +56,10 @@
 ### 项目结构
 
 ```
+public/
+├── svgs/            # 天气图标
+└── favicon.ico      # 项目图标
+
 src/
 ├── api/             # API 接口
 ├── assets/          # 静态资源
@@ -49,7 +68,10 @@ src/
 │   └── svgs/        # SVG 图标
 ├── components/      # 公共组件
 ├── constant/        # 常量定义
+├── doc/             # 开发文档
+├── plugins/         # Vue-Lit插件
 ├── router/          # 路由配置
+├── shared/          # Lit组件库
 ├── store/           # Vuex 状态管理
 │   └── modules/     # 状态模块
 ├── types/           # TypeScript 类型定义
@@ -65,6 +87,19 @@ src/
 tests/
 ├── __mocks__/       # API Mock 文件
 └── *.test.ts        # 单元测试文件
+
+types/
+├── .d.ts            # 全局类型
+├── env.d.ts         # 环境变量类型
+└── g1.d.ts          # Lit第三方组件库类型
+
+webpack/
+├── module           # module rules配置
+├── optimization     # 打包优化配置
+├── performance      # 打包体积性能配置
+├── plugin           # 插件配置
+└── server           # 网络配置
+
 ```
 
 ## 开发指南
