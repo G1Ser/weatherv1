@@ -1,5 +1,5 @@
 import { i as lt, n as D, r as ct, e as K, a as dt, b as ut, t as ht } from "../chunks/lit-DBvanXZV.js";
-import { C as pt, S as mt, F as S, f as j, s as H, v as I, a as bt, b as d, m as E, u as ft, t as R, I as gt, D as vt, c as yt, d as z, e as O, p as et, i as V, g as xt, P as wt, W as St, O as Ct, h as Mt, j as _t, k as Rt, M as Nt, l as Pt, B as At, n as Bt, o as Et, A as zt, q as Ht, r as Dt, w as Ft, x as Tt, y as Lt, T as Wt } from "../chunks/three-Cco-8nUd.js";
+import { C as pt, S as mt, F as S, f as j, s as H, v as I, a as bt, b as d, m as z, u as ft, t as R, I as gt, D as yt, c as vt, d as B, e as O, p as et, i as V, g as xt, P as wt, W as St, O as Ct, h as Mt, j as _t, k as Rt, M as Nt, l as Et, B as Pt, n as At, o as zt, A as Bt, q as Ht, r as Dt, w as Ft, x as Lt, y as Tt, T as Wt } from "../chunks/three-Cco-8nUd.js";
 function It() {
   const s = document.createElement("canvas");
   s.width = s.height = 1024;
@@ -32,31 +32,31 @@ function Ot(e, s) {
     ([n]) => j(H(n.dot(I(127.1, 311.7))).mul(43758.5453))
   ), i = S(([n]) => {
     const a = bt(n), h = j(n), r = t(a), f = t(a.add(I(1, 0))), p = t(a.add(I(0, 1))), m = t(a.add(I(1, 1))), g = h.mul(h).mul(d(3).sub(h.mul(2)));
-    return E(r, f, g.x).add(p.sub(r).mul(g.y).mul(d(1).sub(g.x))).add(m.sub(f).mul(g.x).mul(g.y));
+    return z(r, f, g.x).add(p.sub(r).mul(g.y).mul(d(1).sub(g.x))).add(m.sub(f).mul(g.x).mul(g.y));
   }), l = S(
     ([n]) => i(n).mul(0.5).add(i(n.mul(2)).mul(0.25)).add(i(n.mul(4)).mul(0.125))
     // 第三层：高频，振幅 0.125
   ), c = S(() => {
     const n = ft(), a = l(n.mul(3.6).add(R.mul(0.1))), h = d(1).sub(n.y).mul(0.8).add(d(1).sub(n.x).mul(0.12)).add(H(R.mul(0.65).add(n.x.mul(2.8))).mul(0.05)), r = a.mul(0.5).add(h.mul(0.9)), f = s.mul(2.2), p = r.sub(f);
-    gt(p.lessThan(d(0)), () => vt());
-    const m = yt(e, n).rgb, g = E(
-      E(
-        E(
-          z(1, 0.97, 0.85),
+    gt(p.lessThan(d(0)), () => yt());
+    const m = vt(e, n).rgb, g = z(
+      z(
+        z(
+          B(1, 0.97, 0.85),
           // 白热（~1500°C，燃烧最前沿）
-          z(1, 0.88, 0.05),
+          B(1, 0.88, 0.05),
           // 亮黄（~1200°C）
           O(d(0), d(0.013), p)
         ),
-        z(0.98, 0.4, 0.01),
+        B(0.98, 0.4, 0.01),
         // 橙红（~900°C）
         O(d(0.013), d(0.042), p)
       ),
-      z(0.07, 0.02, 0.01),
+      B(0.07, 0.02, 0.01),
       // 焦炭灰烬（燃烧边缘后方）
       O(d(0.08), d(0.118), p)
     ), Z = d(1).sub(O(d(0.108), d(0.162), p));
-    return E(m, g, Z);
+    return z(m, g, Z);
   })(), u = S(() => {
     const n = et.toVar(), a = H(R.mul(35)).mul(s).mul(8e-3);
     return n.z.addAssign(a), n;
@@ -66,7 +66,7 @@ function Ot(e, s) {
 function Gt() {
   const e = S(() => {
     const t = j(R.mul(0.3).add(V.toFloat().mul(0.13))), i = H(t.mul(Math.PI)).smoothstep(0, 0.5);
-    return z(d(1), d(0.4), d(0.1)).mul(i);
+    return B(d(1), d(0.4), d(0.1)).mul(i);
   })(), s = S(() => {
     const t = et.toVar(), i = j(R.mul(0.2).add(V.toFloat().mul(0.5)));
     return t.y.addAssign(i.mul(2)), t.x.addAssign(H(R.add(V.toFloat())).mul(0.1)), t;
@@ -109,10 +109,13 @@ let b = class extends dt {
     `;
   }
   ignite() {
-    this.isBurning || (this.isBurning = !0, this.ctx ? this.ctx.startBurn = !0 : this._pendingIgnite = !0);
-  }
-  reset() {
-    this.isBurning = !1, this.removeAttribute("closing"), this.ctx && (this.ctx.burnProgress.value = 0, this.ctx.startBurn = !1, this.ctx.scene.position.z = 0, this.initThreeJS());
+    this.isBurning || (this.isBurning = !0, this.dispatchEvent(
+      new CustomEvent("burn", {
+        bubbles: !0,
+        // 向上冒泡
+        composed: !0
+      })
+    ), this.ctx ? this.ctx.startBurn = !0 : this._pendingIgnite = !0);
   }
   // ── Lit 生命周期 ───────────────────────────────────────────────────────────
   updated(e) {
@@ -167,35 +170,35 @@ let b = class extends dt {
       Z,
       N
     ), F = new Nt();
-    F.side = Pt, F.colorNode = st, F.positionNode = ot;
-    const Q = 80, tt = new At(), T = new Float32Array(Q * 3);
+    F.side = Et, F.colorNode = st, F.positionNode = ot;
+    const Q = 80, tt = new Pt(), L = new Float32Array(Q * 3);
     for (let o = 0; o < Q; o++)
-      T[o * 3] = (Math.random() - 0.5) * 2.6, T[o * 3 + 1] = (Math.random() - 0.5) * 4, T[o * 3 + 2] = (Math.random() - 0.5) * 0.2;
+      L[o * 3] = (Math.random() - 0.5) * 2.6, L[o * 3 + 1] = (Math.random() - 0.5) * 4, L[o * 3 + 2] = (Math.random() - 0.5) * 0.2;
     tt.setAttribute(
       "position",
-      new Bt(T, 3)
+      new At(L, 3)
     );
-    const { colorNode: nt, positionNode: it } = Gt(), P = new Et();
-    P.blending = zt, P.size = 0.05, P.colorNode = nt, P.positionNode = it;
-    const L = new Ht(tt, P);
-    L.visible = !1, a.add(L);
-    const X = new Dt(e, s, 96, 192), v = X.attributes.position;
-    for (let o = 0; o < v.count; o++) {
-      const y = v.getX(o), A = v.getY(o), B = y / e + 0.5, J = A / s + 0.5, at = Y(B * 1.6 + 1.1, J * 1.6 + 0.7), k = Y(B * 4.2, J * 4.2), q = Y(B * 2.8 + 5.3, J * 2.8 + 2.1), C = 0.13 + _(B * 3, 7.7) * 0.32, M = t / 2 + (_(B * 2.5, 13.1) - 0.5) * 0.24;
-      if (A > M) {
-        const w = (A - M) / C;
-        v.setX(o, y + (q - 0.5) * 0.08), v.setY(o, M + C * Math.sin(w)), v.setZ(o, C * (Math.cos(w) - 1) + (k - 0.47) * 0.07);
-      } else if (A < -M) {
-        const w = (-A - M) / C;
-        v.setX(o, y + (q - 0.5) * 0.08), v.setY(o, -(M + C * Math.sin(w))), v.setZ(o, C * (Math.cos(w) - 1) + (k - 0.47) * 0.07);
+    const { colorNode: nt, positionNode: it } = Gt(), E = new zt();
+    E.blending = Bt, E.size = 0.05, E.colorNode = nt, E.positionNode = it;
+    const T = new Ht(tt, E);
+    T.visible = !1, a.add(T);
+    const X = new Dt(e, s, 96, 192), y = X.attributes.position;
+    for (let o = 0; o < y.count; o++) {
+      const v = y.getX(o), P = y.getY(o), A = v / e + 0.5, k = P / s + 0.5, at = Y(A * 1.6 + 1.1, k * 1.6 + 0.7), q = Y(A * 4.2, k * 4.2), J = Y(A * 2.8 + 5.3, k * 2.8 + 2.1), C = 0.13 + _(A * 3, 7.7) * 0.32, M = t / 2 + (_(A * 2.5, 13.1) - 0.5) * 0.24;
+      if (P > M) {
+        const w = (P - M) / C;
+        y.setX(o, v + (J - 0.5) * 0.08), y.setY(o, M + C * Math.sin(w)), y.setZ(o, C * (Math.cos(w) - 1) + (q - 0.47) * 0.07);
+      } else if (P < -M) {
+        const w = (-P - M) / C;
+        y.setX(o, v + (J - 0.5) * 0.08), y.setY(o, -(M + C * Math.sin(w))), y.setZ(o, C * (Math.cos(w) - 1) + (q - 0.47) * 0.07);
       } else {
-        const w = (at - 0.47) * 0.12, rt = (k - 0.47) * 0.06;
-        v.setX(o, y + (q - 0.5) * 0.03), v.setZ(o, w + rt);
+        const w = (at - 0.47) * 0.12, rt = (q - 0.47) * 0.06;
+        y.setX(o, v + (J - 0.5) * 0.03), y.setZ(o, w + rt);
       }
     }
     X.computeVertexNormals(), a.add(new Ft(X, F));
-    const $ = new Tt(16770496, 0.6);
-    a.add($), a.add(new Lt(16765072, 1.4).translateZ(5).translateX(2));
+    const $ = new Lt(16770496, 0.6);
+    a.add($), a.add(new Tt(16765072, 1.4).translateZ(5).translateX(2));
     const W = new Wt();
     W.connect(document), this.ctx = {
       scene: a,
@@ -206,13 +209,13 @@ let b = class extends dt {
       burnProgress: N,
       clock: W,
       startBurn: !1,
-      particleSystem: L,
+      particleSystem: T,
       ambientLight: $
     }, this._pendingIgnite && (this.ctx.startBurn = !0, this._pendingIgnite = !1), r.setAnimationLoop(() => {
       if (!this.ctx) return;
       W.update();
       const o = W.getDelta();
-      f.update(), this.ctx.startBurn && (L.visible = !0, N.value = Math.min(
+      f.update(), this.ctx.startBurn && (T.visible = !0, N.value = Math.min(
         N.value + o * this.burnSpeed,
         2
       ), a.position.z -= o * 0.08, $.intensity = 0.6 + Math.sin(Date.now() * 0.01) * 0.2, N.value >= 1.32 && (r.setAnimationLoop(null), this.setAttribute("closing", ""), this.dispatchEvent(
@@ -224,8 +227,8 @@ let b = class extends dt {
     }), requestAnimationFrame(() => {
       m.classList.add("css3d-ready");
     }), new ResizeObserver(() => {
-      const o = c.clientWidth, y = c.clientHeight;
-      !o || !y || (r.setSize(o, y), p.setSize(o, y), h.aspect = o / y, h.updateProjectionMatrix());
+      const o = c.clientWidth, v = c.clientHeight;
+      !o || !v || (r.setSize(o, v), p.setSize(o, v), h.aspect = o / v, h.updateProjectionMatrix());
     }).observe(c);
   }
 };

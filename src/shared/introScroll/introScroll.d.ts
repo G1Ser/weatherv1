@@ -38,7 +38,6 @@ export declare class IntroScroll extends LitElement {
     static styles: import('lit').CSSResult;
     render(): import('lit').TemplateResult<1>;
     ignite(): void;
-    reset(): void;
     protected updated(changedProps: Map<string, unknown>): void;
     protected firstUpdated(): Promise<void>;
     disconnectedCallback(): void;
