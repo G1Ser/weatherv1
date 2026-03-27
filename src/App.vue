@@ -86,7 +86,7 @@ export default {
           this.getLocal(longitude, latitude);
         },
         err => {
-          showToast(`定位失败${err}`, 'error');
+          showToast(`定位失败${err.message}`, 'error');
           this.getLocal();
           storage.set('isNavigate', 'no');
         },
