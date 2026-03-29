@@ -92,7 +92,7 @@ export default {
         },
         {
           enableHighAccuracy: true, //使用GPS
-          timeout: 5000,
+          timeout: 10 * 1000,
           maximumAge: 10 * 1000, // 10s缓存
         }
       );
