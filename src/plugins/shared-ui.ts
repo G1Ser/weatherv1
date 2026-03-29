@@ -9,7 +9,6 @@ const SharedUIPlugin: PluginObject<void> = {
 
     import('@/shared/svgIcon');
     import('@/shared/skeleton');
-    import('@/shared/introScroll');
   },
 };
 

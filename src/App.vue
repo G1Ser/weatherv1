@@ -1,6 +1,11 @@
 <template>
   <div class="app-container">
-    <g1-intro-scroll v-if="isShowIntroScroll" ref="introScrollRef" burn-speed="0.15" @burn="isShowAppPage = true">
+    <g1-intro-scroll
+      v-if="isShowIntroScroll && isIntroScrollLoading"
+      ref="introScrollRef"
+      burn-speed="0.15"
+      @burn="isShowAppPage = true"
+    >
       <div slot="header" class="g1-intro-scroll--header">项目介绍</div>
       <div class="g1-intro-scroll--content">
         <p>基于 Vue2 + Webpack 构建的天气查询应用</p>
@@ -39,6 +44,7 @@ export default {
     return {
       isShowIntroScroll: true,
       isShowAppPage: false,
+      isIntroScrollLoading: false,
     };
   },
   async mounted() {
@@ -46,6 +52,9 @@ export default {
     if (isNavigate !== 'unknown') {
       this.isShowIntroScroll = false;
       this.isShowAppPage = true;
+    } else {
+      await import('@/shared/introScroll');
+      this.isIntroScrollLoading = true;
     }
     if (isNavigate === 'no') {
       this.getLocal();
