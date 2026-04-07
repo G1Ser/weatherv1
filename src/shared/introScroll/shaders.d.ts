@@ -9,7 +9,10 @@ import { default as Node } from 'three/src/nodes/core/Node.js';
  *
  * @returns 已设置 SRGBColorSpace 的 CanvasTexture，可直接赋给材质
  */
-export declare function createAgedPaperTexture(): CanvasTexture;
+interface PaperTextureOptions {
+  size: number;
+}
+export declare function createAgedPaperTexture(options: PaperTextureOptions): CanvasTexture;
 /**
  * 构建卷轴燃烧效果所需的全部 TSL 节点。
  *
@@ -20,9 +23,12 @@ export declare function createAgedPaperTexture(): CanvasTexture;
  * @param paperTex      羊皮纸纹理（由 createAgedPaperTexture 生成）
  * @param burnProgress  燃烧进度 uniform（0 = 未开始，≥1.32 = 视为烧尽）
  */
-export declare function buildScrollShaders(paperTex: CanvasTexture, burnProgress: Node<"float">): {
-    colorNode: Node<"vec3">;
-    positionNode: import('three/webgpu').VarNode<"vec3">;
+export declare function buildScrollShaders(
+  paperTex: CanvasTexture,
+  burnProgress: Node<'float'>,
+): {
+  colorNode: Node<'vec3'>;
+  positionNode: import('three/webgpu').VarNode<'vec3'>;
 };
 /**
  * 构建余烬粒子飘散效果的 TSL 节点。
@@ -35,6 +41,7 @@ export declare function buildScrollShaders(paperTex: CanvasTexture, burnProgress
  *   positionNode → material.positionNode （粒子上升 + 横向漂移）
  */
 export declare function buildParticleShaders(): {
-    colorNode: Node<"vec3">;
-    positionNode: import('three/webgpu').VarNode<"vec3">;
+  colorNode: Node<'vec3'>;
+  positionNode: import('three/webgpu').VarNode<'vec3'>;
 };
+export {};

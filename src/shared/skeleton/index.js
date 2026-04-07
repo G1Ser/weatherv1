@@ -1,15 +1,4 @@
-import { i as l, a as d, b, t as g } from "../chunks/lit-DBvanXZV.js";
-var m = Object.getOwnPropertyDescriptor, h = (i, o, a, s) => {
-  for (var e = s > 1 ? void 0 : s ? m(o, a) : o, t = i.length - 1, n; t >= 0; t--)
-    (n = i[t]) && (e = n(e) || e);
-  return e;
-};
-let r = class extends d {
-  render() {
-    return b`<div class="skeleton-item"></div>`;
-  }
-};
-r.styles = l`
+import{i as e,a as t,b as r,t as i}from"../chunks/lit-DTsLoCx_.js";let o=class extends t{render(){return r`<div class="skeleton-item"></div>`}};o.styles=e`
     :host {
       display: block;
       box-sizing: border-box;
@@ -47,10 +36,4 @@ r.styles = l`
         transform: translateX(100%);
       }
     }
-  `;
-r = h([
-  g("g1-skeleton")
-], r);
-export {
-  r as Skeleton
-};
+  `,o=((e,t)=>{for(var r,i=t,o=e.length-1;o>=0;o--)(r=e[o])&&(i=r(i)||i);return i})([i("g1-skeleton")],o);export{o as Skeleton};
