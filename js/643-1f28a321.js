@@ -1,4 +1,4 @@
-"use strict";(self.webpackChunkweatherv1=self.webpackChunkweatherv1||[]).push([[554],{9554(e,t,r){r.r(t),r.d(t,{Skeleton:()=>s});var i=r(4678),n=Object.getOwnPropertyDescriptor;let s=class extends i.a{render(){return i.b`<div class="skeleton-item"></div>`}};s.styles=i.i`
+"use strict";(self.webpackChunkweatherv1=self.webpackChunkweatherv1||[]).push([[643],{6643:(e,t,r)=>{r.r(t),r.d(t,{Skeleton:()=>a});var i=r(8193);let a=class extends i.a{render(){return i.b`<div class="skeleton-item"></div>`}};a.styles=i.i`
     :host {
       display: block;
       box-sizing: border-box;
@@ -36,4 +36,4 @@
         transform: translateX(100%);
       }
     }
-  `,s=((e,t,r,i)=>{for(var s,a=i>1?void 0:i?n(t,r):t,o=e.length-1;o>=0;o--)(s=e[o])&&(a=s(a)||a);return a})([(0,i.t)("g1-skeleton")],s)}}]);
+  `,a=((e,t)=>{for(var r,i=t,a=e.length-1;a>=0;a--)(r=e[a])&&(i=r(i)||i);return i})([(0,i.t)("g1-skeleton")],a)}}]);
